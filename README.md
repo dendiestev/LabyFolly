@@ -20,7 +20,7 @@
       
       # Class De Map : #
 
-      class Maze:
+      class Map:
 
         ### Création ###
 
@@ -75,8 +75,8 @@
         screen_height = cell_size * num_rows
         screen = pygame.display.set_mode((screen_width, screen_height))
         pygame.display.set_caption("Labyrinthe")
-        maze = Maze(num_cols, num_rows)
-        maze.generate()
+        map = Map(num_cols, num_rows)
+        map.generate()
         player = Player(0, 0)
         running = True
 
@@ -86,7 +86,7 @@
               running = False
           # Ici, vous pouvez gérer les événements de déplacement du joueur
           screen.fill(WHITE)
-          maze.draw(screen, cell_size)
+          map.draw(screen, cell_size)
           player.draw(screen, cell_size)
           pygame.display.flip()
         pygame.quit()
