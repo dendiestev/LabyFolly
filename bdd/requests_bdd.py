@@ -45,9 +45,16 @@ class Bdd:
         dicto = {"pseudo": value[0], "timer": value[1], "level": value[2], "map": value[3]}
         return dicto
     
-    def update_party(self, timer=None, level=None, map=None):
-        pass
-    
-
-    
-    
+    def update_party(self, pseudo, timer=None, level=None, map=None):
+        if timer==None or level==None or map==None:
+            result = self.get_party(pseudo)
+            if timer == None:
+                timer = result["timer"]
+            if level == None:
+                level = result["level"]
+            if map == None:
+                map = result["map"]
+        cursor = self.open_cursor()
+        request = f"UPDATE Party SET timer = ?, level = ?, map = ? WHERE pseudo = ?"
+        cursor.execute(request, (timer, level, map, pseudo))
+        self.connection.commit()
