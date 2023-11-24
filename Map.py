@@ -88,9 +88,10 @@ class Map:
 
 
     ### Dessin ###
-
-    def draw(self, screen, cell_size):
-        for row in range(self.height):
-            for col in range(self.width):
-                if self.cells[row][col]:
-                    pygame.draw.rect(screen, BLACK, (col * cell_size, row * cell_size, cell_size, cell_size))
+    def draw(self, screen, screen_width, screen_height): 
+        pygame.draw.rect(screen, BLACK, (screen_width - 50, screen_height - 50, 50, 50))
+    # def draw(self, screen, cell_size):
+    #     for row in range(self.height):
+    #         for col in range(self.width):
+    #             if self.cells[row][col]:
+    #                 pygame.draw.rect(screen, BLACK, (col * cell_size, row * cell_size, cell_size, cell_size))
