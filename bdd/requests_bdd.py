@@ -44,6 +44,17 @@ class Bdd:
         self.close_cursor(cursor)
         dicto = {"pseudo": value[0], "timer": value[1], "level": value[2], "map": value[3]}
         return dicto
+        
+    def get_all(self):
+        cursor = self.open_cursor()
+        request = f"SELECT * FROM Party JOIN Player ON Player.pseudo = Party.player ORDER BY level DESC, timer ASC"
+        cursor.execute(request)
+        values = cursor.fetchall()
+        self.close_cursor(cursor)
+        dicto_all = []
+        for value in values:
+            dicto_all.append({"rank": values.index(value)+1,"pseudo": value[0], "timer": value[1], "level": value[2], "map": value[3], "character": value[5]})
+        return dicto_all
     
     def update_party(self, pseudo, timer=None, level=None, map=None):
         if timer==None or level==None or map==None:
