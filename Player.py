@@ -10,10 +10,11 @@ class Player():
     Spawn a player
     """
     
-    def __init__(self, screen, position_x, position_y):
+    def __init__(self, screen, position_x, position_y, vel):
         self.screen = screen
         self.position_x = position_x
         self.position_y = position_y
+        self.vel = vel
 
     def draw(self):
         width = 20
@@ -21,13 +22,13 @@ class Player():
         pygame.draw.rect(self.screen, RED_LIGHT, (self.position_x, self.position_y, width, height))
 
     def top(self):
-        self.position_y -= 5
+        self.position_y -= self.vel
 
     def down(self):
-        self.position_y += 5
+        self.position_y += self.vel
 
     def right(self):
-        self.position_x += 5
+        self.position_x += self.vel
     
     def left(self):
-        self.position_x -= 5
+        self.position_x -= self.vel
