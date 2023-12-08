@@ -15,13 +15,19 @@ class Map:
     ### Dessin ###
 
     def draw(self, screen, screen_width, screen_height):
+        # TEST ->
         num_col = screen_height // 30
-        collision_list = []
-        for i in range(num_col):
-            pygame.draw.rect(screen, BLACK, (screen_width - 30, screen_height - 30*i, 30, 30))
-            mur_col_pos = (screen_width - 30, screen_height - 30*i)
-            collision_list.append(mur_col_pos)
-        print(collision_list)
+        num_row = screen_width // 30
+        for x in range(num_row):
+            pygame.draw.rect(screen, BLACK, (screen_width))
+        # A CONTINUER MAIS ON VA PARTIR SUR UNE GENERATION COMME SUR WIKIPEDIA
+        # num_col = screen_height // 30
+        # self.collision_list = []
+        # for i in range(num_col):
+        #     pygame.draw.rect(screen, BLACK, (screen_width - 30, screen_height - 30*i, 30, 30))
+        #     mur_col_pos = [screen_width - 30, screen_height - 30*i]
+        #     self.collision_list.append(mur_col_pos)
+        # return self.collision_list
 
 
     # def draw(self, screen, cell_size):
