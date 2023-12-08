@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang = "fr">
+    <head>
+        <title>Leaderboard - Labyrinth</title>
+        <meta charset = "UTF-8">
+        <link rel = "stylesheet" href = "../static/style.css">
+        <link rel = "stylesheet" href = "static/style.css">
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </head>
+    <body style="margin: 0;background-color: black; color: white;">
+        
+            
+        
+
+
+
+        <header style="background-color: rgb(255, 255, 255);height: 150px;width: 100%; display: flex;flex-direction:row;justify-content:space-evenly;align-items: center;">
+            <div class="box_head" style="background-color: rgb(157, 157, 255); height: 125px; width: 30%;">
+                <p class="head_title">COUCOU</p>
+            </div>
+            <div class="box_head" style="background-color: rgb(157, 157, 255); height: 125px; width: 30%;">
+                <p class="head_title">COUCOU</p>
+            </div>
+            <div class="box_head" style="background-color:rgb(157, 157, 247); height: 125px; width: 30%;">
+                <p class="head_title">COUCOU</p>
+            </div>
+        </header>
+        <table>
+            <caption>
+                Classement de tous les joueurs de notre jeu
+            </caption>
+            <thead>
+                <tr>
+                    <th id="trop" scope="col">🏆</th>
+                    <th class="coll" scope="col">Pseudo</th>
+                    <th class="coll" scope="col">Level</th>
+                    <th class="coll" scope="col">Temps</th>
+                    <th class="coll" scope="col">Map</th>
+                    <th class="coll" scope="col">Character</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for valeur in liste %}
+                <tr>
+                    <th id="rank" scope="row">{{valeur['rank']}}</th>
+                    <td>{{valeur['pseudo']}}</td>
+                    <td>{{valeur['level']}}</td>
+                    <td>{{valeur['timer']}}</td>
+                    <td>{{valeur['map']}}</td>
+                    <td>{{valeur['character']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        <footer>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+table {
+  margin-top: 2%;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+}
+  
+thead th:nth-child(1) {
+  width: 5%;
+}
+  
+thead th:nth-child(2) {
+  width: 15%;
+}
+  
+thead th:nth-child(3) {
+  width: 10%;
+}
+  
+thead th:nth-child(4) {
+   width: 10%;
+}
+
+thead th:nth-child(5) {
+  width: 10%;
+}
+
+thead th:nth-child(6) {
+  width: 15%;
+}
+  
+th,
+td {
+  padding: 20px;
+}
+  
+  
+tbody tr:nth-child(odd) {
+  background-color: #ff33cc;
+}
+  
+tbody tr:nth-child(even) {
+  background-color: #e495e4;
+}
+  
+tbody tr {
+  background-image: url();
+}
+  
+table {
+  background-color: white;
+}
+  
+caption {
+  font-family: "Rock Salt", cursive;
+  padding: 20px;
+  font-style: italic;
+  caption-side: bottom;
+  color: #666;
+  text-align: right;
+  letter-spacing: 1px;
+}
+  
+html {
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+  
+thead th,
+tfoot th {
+  font-family: "Rock Salt", cursive;
+}
+  
+th {
+  letter-spacing: 2px;
+}
+  
+td {
+  letter-spacing: 1px;
+}
+  
+tbody td {
+  text-align: center;
+}
+  
+tfoot th {
+  text-align: right;
+}
+
+.head_title
+{
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+.box_head
+{
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.coll
+{
+  background-color: rgb(157, 157, 255);
+  font-family: 'Nunito', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+#rank
+{
+  background-color: white;
+  color: black;
+  font-family: 'Nunito';
+}
