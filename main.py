@@ -10,7 +10,7 @@ def main():
         pygame.init()
         cell_size = 30
         num_rows = 25
-        num_cols = 25
+        num_cols = 35
         screen_width = cell_size * num_cols
         screen_height = cell_size * num_rows
         screen = pygame.display.set_mode((screen_width, screen_height))
@@ -19,8 +19,8 @@ def main():
 
         # Initialisation du joueur grace à Player.py
 
-        p = Player(screen, screen_width - 25, screen_height - 20)
-
+        p = Player(screen, screen_width - 25, screen_height - 20, 2)
+        
         running = True
 
         while running:
@@ -33,7 +33,7 @@ def main():
             # Affichage de la map grace à Map.py
 
             map.draw(screen, screen_width, screen_height)
-            
+                
             # Affichage du player
 
             p.draw()
@@ -68,11 +68,12 @@ def main():
                 p.position_y = 0
             if p.position_y >= screen_height - 20:
                 p.position_y = screen_height - 20
-            # for i in range(1):
-            #     print(p.position_x, map.collision_list[i])
-            #     if p.position_x == map.collision_list[i][0]:
-            #         print(p.position_x)
-                    
+            
+            # for i in range(len(map.collision_list)):
+            #     if p.position_x < map.collision_list[i][0]:
+            #         p.position_x += p.vel
+            # print(map.collision_list)
+
             pygame.display.flip()
         pygame.quit()
 
