@@ -16,10 +16,10 @@ def main():
         screen = pygame.display.set_mode((screen_width, screen_height))
         pygame.display.set_caption("Labyrinthe")
         map = Map()
-        
+
         # Initialisation du joueur grace à Player.py
 
-        p = Player(screen, screen_width, screen_height)
+        p = Player(screen, screen_width - 25, screen_height - 20)
 
         running = True
 
@@ -33,7 +33,7 @@ def main():
             # Affichage de la map grace à Map.py
 
             map.draw(screen, screen_width, screen_height)
-
+            
             # Affichage du player
 
             p.draw()
@@ -68,23 +68,11 @@ def main():
                 p.position_y = 0
             if p.position_y >= screen_height - 20:
                 p.position_y = screen_height - 20
-
-            
-            
-            for i in range(len(map.collision_list)):
-                if p.position_x == map.collision_list[i][0]:
-                    p.position_x = -5
-                if p.position_y == map.collision_list[i][1]:
-                    p.position_y = -5
-            """
-                # Vérification pour les X, [0]
-                if p.position_x == map.collision_list[i][0]:
-                    p.position_x = p.position_x-150
-                # Vérification pour les Y, [1]
-                if p.position_y == map.collision_list[i][1]:
-                    p.position_y = p.position_y-150
-            pygame.display.flip()
-            """
+            # for i in range(1):
+            #     print(p.position_x, map.collision_list[i])
+            #     if p.position_x == map.collision_list[i][0]:
+            #         print(p.position_x)
+                    
             pygame.display.flip()
         pygame.quit()
 
