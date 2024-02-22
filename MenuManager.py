@@ -16,7 +16,7 @@ class MenuManager:
         self.logo = pygame.image.load("assets/logo/main.png").convert()
         self.l = Leaderboard(screen=self.screen)
         self.newgame = NewGame(self.screen)
-        self.multigame = MuliGame(self.screen)
+        self.multigame = MultiGame(self.screen)
         self.etat = "menu"
         self.start_the_game = False
 
@@ -25,7 +25,7 @@ class MenuManager:
             self.screen.fill("purple")
             self.screen.blit(self.logo, (290, 50))
             self.bleaderborad.update()
-            self.bload.update()
+            self.bmulti.update()
             self.bnew.update()
         if self.etat == "leaderboard":
             self.screen.fill("blue")

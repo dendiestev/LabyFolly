@@ -1,40 +1,87 @@
 import pygame
+import time
 import os
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED_LIGHT = (245, 66, 66)
+BROWN = (110, 70, 2)
+GREEN_LIGHT = (61, 255, 168)
+HIT_BOX_BLOCK = 30
+HIT_BOX_PLAYER = 20
 
 class Player():
     """
-    Spawn a player
+    All the differents player mecanics
     """
     
-    def __init__(self, screen, position_x, position_y, vel):
+    def __init__(self, screen, map, cell_size):
         self.screen = screen
-        self.position_x = position_x
-        self.position_y = position_y
-        self.vel = vel
+        self.map = map
+        self.position_x = self.map.start[0]
+        self.position_y = self.map.start[1]
+        self.player = pygame.Rect(0, 0, 0, 0)
         self.player = pygame.Rect(0, 0, 0, 0)
         self.life = 3
+        self.nextLevel = False
+        self.cell_size = cell_size
 
-    def draw(self):
-        width = 15
-        height = 15
-        self.player = pygame.Rect(self.position_x, self.position_y, width, height)
-        pygame.draw.rect(self.screen, RED_LIGHT, self.player)
-
-    def top(self):
-        self.position_y -= self.vel
-
-    def down(self):
-        self.position_y += self.vel
-
-    def right(self):
-        self.position_x += self.vel
+    def top(self, main_liste):
+        if self.canMoveTop(main_liste):
+            main_liste[self.position_x][self.position_y] = 0
+            self.position_y -=1
+            main_liste[self.position_x][self.position_y] = 7
     
-    def left(self):
-        self.position_x -= self.vel
 
-    def clear_player(self):
-        pygame.draw.rect(self.screen, WHITE, (self.position_x, self.position_y, 15, 15))
+    def down(self, main_liste):
+        if self.canMoveDown(main_liste):
+            main_liste[self.position_x][ self.position_y] = 0
+            self.position_y += 1
+            main_liste[self.position_x][ self.position_y] = 7
+     
+
+    def right(self, main_liste):
+        if self.canMoveRight(main_liste):
+            main_liste[self.position_x][self.position_y] = 0
+            self.position_x += 1
+            main_liste[self.position_x][self.position_y] = 7
+     
+    
+    def left(self, main_liste):
+        if self.canMoveLeft(main_liste):
+            main_liste[self.position_x][self.position_y] = 0
+            self.position_x -= 1
+            main_liste[self.position_x][self.position_y] = 7
+    
+
+    def canMoveTop(self, main_liste):
+        if self.position_x == 1 and self.position_y-1 == 1:
+            self.nextLevel = True
+        if main_liste[self.position_x][self.position_y-1] in [-1,-2,-3,-4]:
+            return False
+        else:
+            return True
+        
+    def canMoveDown(self, main_liste):
+        if self.position_x == 1 and self.position_y+1 == 1:
+            self.nextLevel = True
+        if main_liste[self.position_x][self.position_y+1] in [-1,-2,-3,-4]:
+            return False
+        else:
+            return True
+        
+    def canMoveLeft(self, main_liste):
+        if self.position_x-1 == 1 and self.position_y == 1:
+            self.nextLevel = True
+        if main_liste[self.position_x-1][self.position_y] in [-1,-2,-3,-4]:
+            return False
+        else:
+            return True
+    
+    def canMoveRight(self, main_liste):
+        if self.position_x+1 == 1 and self.position_y == 1:
+            self.nextLevel = True
+        if main_liste[self.position_x +1][self.position_y] in [-1,-2,-3,-4]:
+            return False
+        else:
+            return True
