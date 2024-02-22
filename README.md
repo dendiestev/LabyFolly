@@ -1,5 +1,9 @@
 # Labyrinth
 
+Nous avons créé le labyrinth de vos rêves!
+
+
+
 🤔 Recherche Bibliothèque PyGames : 
   - https://he-arc.github.io/livre-python/pygame/index.html
   - https://www.pygame.org/docs/
