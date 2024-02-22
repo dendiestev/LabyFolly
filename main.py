@@ -1,94 +1,123 @@
 import pygame
+from pygame import mixer
 
-from Map import *
-from Player import *
+from MenuManager import *
+from GameManager import *
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 def main():
-        pygame.init()
-        cell_size = 30
-        num_rows = 25
-        num_cols = 35
-        screen_width = 21*30 #taille de chemin -> 20 * 30 (le nombre de case de chemin + 5 (taille de mur) * 29 (nombre de mur)
-        screen_height = 21*30
-        screen = pygame.display.set_mode((screen_width, screen_height))
-        pygame.display.set_caption("Labyrinthe")
-        map = Map(screen, screen_width, screen_height)
-        map.generer_matrice()
-        map.matrice_finale()
-        map.afficher2pointzero()
-        # Initialisation du joueur grace à Player.py
-        # Set la velocite du joueur proportionnellement à la taille de la fenêtre
-        p = Player(screen, screen_width - 52.5, screen_height - 52.5, .1)
-        map.set_collider(p.player)
+    pygame.init()
+    # mixer.init()
+    # m_valo = "textures/valo/valoMusic.mp3"
+    # mixer.music.load(m_valo)
+    lvl = 0
+    cell_size = 30
+    num_rows = 5
+    num_cols = 5
+    screen_width = 1350 #taille de chemin -> 20 * 30 (le nombre de case de chemin + 5 (taille de mur) * 29 (nombre de mur)
+    screen_height = 1050
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption(f"Labyrinthe")
+    
+    running = True
+    menuManager = MenuManager(screen)
+    user_and_party_info = None
 
-        screen.fill(WHITE)
+    gameManager = GameManager(screen, cell_size, num_rows, num_cols, lvl, user_and_party_info)
 
-        # Affichage de la map grace à Map.py
+    while running:
+        menuManager.update()
+        if menuManager.etat == "game":
+            gameManager = GameManager(screen, cell_size, num_rows, num_cols, user_and_party_info)
+            menuManager.etat = "in game"
+        if menuManager.etat == "in game":
+            gameManager.update()
 
-        map.afficher_graphique()
-        map.spawn_enemies(15, 15)
-        map.afficher_enemies()
-                
-        # Affichage du player
 
-        p.draw()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if menuManager.etat == "menu":
+                        if menuManager.bleaderborad.over():
+                            menuManager.etat = "leaderboard"
+                        if menuManager.bnew.over():
+                            menuManager.etat = "new game"
+                        if menuManager.bload.over():
+                            menuManager.etat = "load game"
+                    if menuManager.etat == "leaderboard":
+                        if menuManager.l.breload.over():
+                            menuManager.l.reload()
+                    if menuManager.etat == "new game":
+                        if menuManager.newgame.baright.over():
+                            if menuManager.newgame.perso < len(menuManager.newgame.liste_perso)-1:
+                                menuManager.newgame.perso +=1
+                            else:
+                                menuManager.newgame.perso = 0
+                        if menuManager.newgame.baleft.over():
+                            if menuManager.newgame.perso > 0:
+                                menuManager.newgame.perso -= 1
+                            else:
+                                menuManager.newgame.perso = len(menuManager.newgame.liste_perso)-1
+                        if menuManager.newgame.bmapcod.over():
+                            menuManager.newgame.map = 0
+                        if menuManager.newgame.bmapftn.over():
+                            menuManager.newgame.map = 1
+                        if menuManager.newgame.bmaphp.over():
+                            menuManager.newgame.map = 2
+                        if menuManager.newgame.bmapmk.over():
+                            menuManager.newgame.map = 3
+                        if menuManager.newgame.bmapvalo.over():
+                            menuManager.newgame.map = 4
+                        if menuManager.newgame.bstart.over():
+                            check = menuManager.newgame.check()
+                            if check == True:
+                                user_and_game_info = menuManager.newgame.start()
+                                menuManager.etat = "game"
+                                menuManager.start_the_game == True
+                if menuManager.etat in ["new game","leaderboard"]:             
+                    if menuManager.bback.over():
+                        menuManager.etat = "menu"
+            if menuManager.etat == "new game":
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if menuManager.newgame.input_rect.collidepoint(event.pos):
+                        menuManager.newgame.active = True
+                    else:
+                        menuManager.newgame.active = False
         
-        running = True
+                if event.type == pygame.KEYDOWN:
+        
+                    if menuManager.newgame.active:
+                        if event.key == pygame.K_BACKSPACE:
+                            menuManager.newgame.user_text = menuManager.newgame.user_text[:-1]
 
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
+                        elif len(menuManager.newgame.user_text)+2 > 15:
+                            menuManager.newgame.user_text = "Max 15 charactere"
+                        else:
+                            menuManager.newgame.user_text += event.unicode
+                
+        # Déplacement vers le haut, bas, gauche, droite du joueur définit précedement
 
-
-            # Déplacement vers le haut, bas, gauche, droite du joueur définit précedement
-
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_UP]:
-                p.clear_player()
-                p.top()
-                p.draw()
-                pygame.display.update()
-            elif keys[pygame.K_DOWN]:
-                p.clear_player()
-                p.down()
-                p.draw()
-                pygame.display.update()
-            elif keys[pygame.K_RIGHT]:
-                p.clear_player()
-                p.right()
-                p.draw()
-                pygame.display.update()
-            elif keys[pygame.K_LEFT]:
-                p.clear_player()
-                p.left()
-                p.draw()
-                pygame.display.update()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    GameManager.top()
+                    pygame.display.update()
+                elif event.key == pygame.K_DOWN:
+                    GameManager.down()
+                    pygame.display.update()
+                elif event.key == pygame.K_RIGHT:
+                    GameManager.right()
+                    pygame.display.update()
+                elif event.key == pygame.K_LEFT:
+                    GameManager.left()
+                    pygame.display.update()
             
-            # Vérification pour les bors de la map
-
-            if p.position_x <= 0:
-                p.position_x = 0
-            if p.position_x >= screen_width - 20:
-                p.position_x = screen_width - 20
-            if p.position_y <= 0:
-                p.position_y = 0
-            if p.position_y >= screen_height - 20:
-                p.position_y = screen_height - 20
-            
-            # for i in range(len(map.collision_list)):
-            #     if p.position_x < map.collision_list[i][0]:
-            #         p.position_x += p.vel
-            # print(map.collision_list)
-
-            pygame.display.flip()
-        pygame.quit()
+        pygame.display.flip()
+    pygame.quit()
 
 if __name__ == "__main__":
     main()
-
-# TO DO:
-# - Finir la fonction de collision
