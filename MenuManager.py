@@ -4,17 +4,19 @@ import time
 from Button import *
 from Leaderboard import *
 from NewGame import * 
+from MultiGame import *
 
 class MenuManager:
     def __init__(self, screen) -> None:
         self.screen = screen
         self.bleaderborad = Button(screen=self.screen, pos=(590,250), path_img_down="assets/buttons/leaderboard/down.png", path_img_up="assets/buttons/leaderboard/up.png")
         self.bnew = Button(screen=self.screen, pos=(590,320), path_img_down="assets/buttons/new/down.png", path_img_up="assets/buttons/new/up.png")
-        self.bload = Button(screen=self.screen, pos=(590,390), path_img_down="assets/buttons/load/down.png", path_img_up="assets/buttons/load/up.png")
+        self.bmulti = Button(screen=self.screen, pos=(590,390), path_img_down="assets/buttons/multi/down.png", path_img_up="assets/buttons/multi/up.png")
         self.bback = Button(screen=self.screen, pos=(590,650), path_img_down="assets/buttons/go_back/down.png", path_img_up="assets/buttons/go_back/up.png")
         self.logo = pygame.image.load("assets/logo/main.png").convert()
         self.l = Leaderboard(screen=self.screen)
         self.newgame = NewGame(self.screen)
+        self.multigame = MuliGame(self.screen)
         self.etat = "menu"
         self.start_the_game = False
 
@@ -32,6 +34,10 @@ class MenuManager:
         if self.etat == "new game":
             self.screen.fill("red")
             self.newgame.update()
+            self.bback.update()
+        if self.etat == "multi":
+            self.screen.fill("yellow")
+            self.multigame.update()
             self.bback.update()
         if time.time() < self.newgame.cooldown+1:
             self.newgame.affiche_error(self.newgame.error)
