@@ -14,15 +14,15 @@ class NewGame():
 
         self.BDD = Bdd("./bdd/BDD.db")
         
-        self.baleft =Button(screen=self.screen, pos=(630,100), path_img_down="assets/buttons/arrow_left/down.png", path_img_up="assets/buttons/arrow_left/up.png")
-        self.baright =Button(screen=self.screen, pos=(780,100), path_img_down="assets/buttons/arrow_right/down.png", path_img_up="assets/buttons/arrow_right/up.png")
-        self.bmapcod = Button(screen=self.screen, pos=(150,200), path_img_down="assets/pp/pp_cod.png", path_img_up="assets/pp/pp_cod.png")
-        self.bmapftn = Button(screen=self.screen, pos=(400,200), path_img_down="assets/pp/pp_ftn.png", path_img_up="assets/pp/pp_ftn.png")
-        self.bmaphp = Button(screen=self.screen, pos=(650,200), path_img_down="assets/pp/pp_hp.png", path_img_up="assets/pp/pp_hp.png")
-        self.bmapmk = Button(screen=self.screen, pos=(150,430), path_img_down="assets/pp/pp_mk.png", path_img_up="assets/pp/pp_mk.png")
-        self.bmapvalo = Button(screen=self.screen, pos=(400,430), path_img_down="assets/pp/pp_valo.png", path_img_up="assets/pp/pp_valo.png")
+        self.baleft =Button(screen=self.screen, pos=(880,100), path_img_down="assets/buttons/arrow_left/down.png", path_img_up="assets/buttons/arrow_left/up.png")
+        self.baright =Button(screen=self.screen, pos=(1030,100), path_img_down="assets/buttons/arrow_right/down.png", path_img_up="assets/buttons/arrow_right/up.png")
+        self.bmapcod = Button(screen=self.screen, pos=(300,200), path_img_down="assets/pp/pp_cod.png", path_img_up="assets/pp/pp_cod.png")
+        self.bmapftn = Button(screen=self.screen, pos=(550,200), path_img_down="assets/pp/pp_ftn.png", path_img_up="assets/pp/pp_ftn.png")
+        self.bmaphp = Button(screen=self.screen, pos=(800,200), path_img_down="assets/pp/pp_hp.png", path_img_up="assets/pp/pp_hp.png")
+        self.bmapmk = Button(screen=self.screen, pos=(300,430), path_img_down="assets/pp/pp_mk.png", path_img_up="assets/pp/pp_mk.png")
+        self.bmapvalo = Button(screen=self.screen, pos=(550,430), path_img_down="assets/pp/pp_valo.png", path_img_up="assets/pp/pp_valo.png")
 
-        self.bstart =Button(screen=self.screen, pos=(675,455), path_img_down="assets/buttons/start/down.png", path_img_up="assets/buttons/start/up.png")
+        self.bstart =Button(screen=self.screen, pos=(825,455), path_img_down="assets/buttons/start/down.png", path_img_up="assets/buttons/start/up.png")
         
         self.list_map = [(self.bmapcod.pos[0]-5, self.bmapcod.pos[1]-5, 210,210), (self.bmapftn.pos[0]-5, self.bmapftn.pos[1]-5, 210,210),(self.bmaphp.pos[0]-5, self.bmaphp.pos[1]-5, 210,210),(self.bmapmk.pos[0]-5, self.bmapmk.pos[1]-5, 210,210),(self.bmapvalo.pos[0]-5, self.bmapvalo.pos[1]-5, 210,210)]
         self.map = 0
@@ -46,7 +46,12 @@ class NewGame():
             text_surface2 = self.base_font2.render("Pseudo invalid", True, (255, 255, 255))
         if error == 2:
             text_surface2 = self.base_font2.render("Pseudo invalid", True, (255, 255, 255))
-        self.screen.blit(text_surface2, ((50+475)-(14*5), 15))
+        self.screen.blit(text_surface2, ((525)-(14*5), 15))
+    
+    def check_space(self):
+        if " " in self.user_text:
+            return True
+        return False
     
     def check(self):
         data = self.BDD.get_all()
@@ -69,10 +74,11 @@ class NewGame():
         print("start")
         self.BDD.create_player(pseudo=self.user_text, character=self.perso)
         self.BDD.create_party(player=self.user_text, timer="00:00:00",level=1,map=self.map)
+        return (self.BDD.get_player, self.BDD.get_party)
 
     def draw_perso(self):
         b = pygame.image.load(self.liste_perso[self.perso]).convert_alpha()
-        self.screen.blit(b, (680,70))
+        self.screen.blit(b, (930,70))
 
     def update(self):
         pygame.draw.rect(self.screen, (255,255,255), self.list_map[self.map])
@@ -100,7 +106,7 @@ class NewGame():
     
         text_surface = self.base_font.render(self.user_text, True, (255, 255, 255))
         
-        self.screen.blit(text_surface, ((150+120)-(len(self.user_text)*2), self.input_rect.y+15))
+        self.screen.blit(text_surface, ((270)-(len(self.user_text)*2), self.input_rect.y+15))
 
         
             
