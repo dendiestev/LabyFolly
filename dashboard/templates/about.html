@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang = "fr">
+    <head>
+        <link rel="icon" href="{{ url_for('static', filename='ico.png') }}" />
+        <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.11.2/css/all.css" > 
+        <title>About US - LabyFolly</title>
+        <meta charset = "UTF-8">
+        <link rel = "stylesheet" href = "../static/style.css">
+        <link rel = "stylesheet" href = "static/style.css">
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </head>
+    <body class="all_body">
+        <header class="head_all">
+            <div class="image_ico">
+            </div>
+            <div class="box_head">
+                <p class="head_title">N°1 of labyrinth games</p>
+            </div>
+            <div class="box_head">
+                <p class="head_title"><a class="about" href="{{ url_for('static', filename='../') }}">Home</a></p>
+            </div>
+        </header>
+        <div class="article">
+            <div class="article_title title_right">
+            <h1>
+                Our Project
+                <hr>
+            </h1>
+            </div>
+            <div style="display: flex; flex-direction: row;height: 75%;">
+                <img src="https://classetice.fr/v2/wp-content/uploads/2020/09/orthogonal_maze_with_20_by_20_cells.png">
+                <div id="article_content">
+                    <div class="bulle">
+                        Our project is <br><b>to make game</b>
+                    </div>
+                    <div class="bulle">
+                        The idea of the team <br>was to developp a labyrinth
+                    </div>
+                    <div class="bulle">
+                        More than just a labyrinth<br> we want to create a<br> <b>real game</b>
+                    </div>
+                    <div class="bulle">
+                        And it have a <b>special idea</b>
+                    </div>
+                    
+                    <div class="bulle">
+                        This one labyrinth have been developped <br> in python. <br>During NSI classes and at home
+                    </div>
+                    <div class="bulle">
+                        We use at least some thecnical experience<br>For exemple, "POO" & classes in python
+                    </div>
+                    <div class="bulle">
+                        Our database in SQL is also managed by a<br> <b>python program</b> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article">
+            <div class="article_title title_left">
+                <h1>
+                    Our goal
+                    <hr>
+                </h1>
+            </div>
+            <div id="article_content2">
+                <div class="artc_goal">
+                    <h2 class="title_h">
+                        🎯 The focus
+                    </h2>
+                    
+                    <p>On incorporating nostalgic elements from users' childhood games into the labyrinth, aiming to evoke a sense of nostalgia and engage players across different generations. <br>Thanks to LabyFolly and our game based on an arcade game, you can fall back into your youth while choosing a current theme, with innovative mechanics.</p>
+                </div>
+                
+                <div class="artc_goal">
+                    <h2 class="title_h">
+                        🥳 Get fun
+                    </h2>
+                    <p>Through this approach, the project seeks to provide a unique and enjoyable gaming experience, fostering a connection between modern technology and the cherished memories of users' gaming past. Where the user interface, controls, and overall gameplay are designed with the intention of making the game accessible and enjoyable for a broad audience.</p>
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <div class="article" id="last_one">
+            <div class="article_title title_right">
+                <h1>
+                    Our team of developpers
+                    <hr>
+                </h1>
+            </div>
+            <div class="all_developpers">
+                <div class="developpers">
+                    <h2>
+                        <a href="http://elouen.verachten.fr/" target="_blank">Elouen</a>
+                    </h2>
+                    <img src="http://elouen.verachten.fr/img/elouen.png">
+                    
+                    <div>
+                        <p>
+                            High school student with a passion for computer science, especially video game development, and a keen interest in mathematics. He also works on more ambitious projects and website development. He's looking to thrive in the fields he loves and the things he does, being creative, imaginative and learning new things every day. He's curious and eager to learn!
+                        </p>
+                        <p>
+                            <b class="hewas">On our project he was:</b>
+                            <ul class="all_list">
+                                <li class="list">
+                                    Maping designer
+                                </li>
+                                <li class="list">
+                                    UX/UI of website
+                                </li>
+                                <li class="list">
+                                    Designer of players
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="developpers">
+                    <h2>
+                        <a href="https://jonas0o0.github.io/Portfolio/" target="_blank">Jonas</a>
+                    </h2>
+                    <img src="https://jonas0o0.github.io/Portfolio/assets/Images/colombe.jpg">
+                    <div>
+                        <p>
+                            Currently in his final year of high school, he's particularly passionate about mathematics and NSI (Numérique et Sciences Informatiques), which stand out as his two favorite subjects. His academic career has been guided by a thirst for knowledge in these fields, with a particular emphasis on computer science.
+                            <br><br>
+                            In terms of web development, He has already explored and created several animation models. These projects have enabled him to put his programming skills into practice and bring visual concepts to life. His interest in web development is part of a creative approach where every project is an opportunity to explore and learn.
+                        </p>
+                        <p>
+                            <b class="hewas">On our project he was:</b>
+                            <ul class="all_list">
+                                <li class="list">
+                                    Co-creater of the database
+                                </li>
+                                <li class="list">
+                                    Creator of the menu of the game
+                                </li>
+                                <li class="list">
+                                    Creator of the in-game leaderboard
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="developpers">
+                    <h2>
+                        <a href="">Estévan</a>
+                    </h2>
+                    <img src="{{ url_for('static', filename='estev.jpeg') }}">
+                    <div>
+                        <p>
+                            Estévan is currently in his final year of high school. Passionate about IT, he is the author of numerous projects such as websites and applications. Although his technical skills in IT leave much to be desired, Estévan has a knack for organizing projects. 
+                        </p>
+                        <p>
+                            <b class="hewas">On our project he was:</b>
+                            <ul class="all_list">
+                                <li class="list">
+                                    Co-creater of the database
+                                </li>
+                                <li class="list">
+                                    Website creator
+                                </li>
+                                <li class="list">
+                                    Creator of the website leaderboard
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                
+            </div>  
+        </div>
+        <footer class="foot">
+            <div class="image_ico">
+            </div>
+            <div class="box_foot">
+                <p class="foot_title">Made with &nbsp; <i class="fa fa-heart"></i> &nbsp; by the all team</p>
+            </div>
+            <div class="box_foot">
+                <p class="foot_title"><a class="about" href="{{ url_for('static', filename='../') }}">Home</a></p>
+            </div>
+        </footer>
+    </body>
+</html>

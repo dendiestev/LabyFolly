@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
 
+
 table {
   margin-top: 2%;
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 3px solid purple;
+  border: 3px solid rgb(132, 89, 107);
 }
   
 thead th:nth-child(1) {
@@ -40,11 +41,11 @@ td {
   
   
 tbody tr:nth-child(odd) {
-  background-color: #ff33cc;
+  background-color: rgb(156, 105, 126);
 }
   
 tbody tr:nth-child(even) {
-  background-color: #e495e4;
+  background-color:  rgb(132, 89, 107);
 }
   
 tbody tr {
@@ -52,7 +53,7 @@ tbody tr {
 }
   
 table {
-  background-color: white;
+  background-color: #edffec;
 }
   
 caption {
@@ -60,7 +61,7 @@ caption {
   padding: 20px;
   font-style: italic;
   caption-side: bottom;
-  color: #666;
+  color: #edffec;
   text-align: right;
   letter-spacing: 1px;
 }
@@ -90,27 +91,353 @@ tfoot th {
   text-align: right;
 }
 
+.all_body
+{
+  margin: 0;
+  background-color: black; 
+  color: #edffec;
+}
+
+.head_all
+{
+  background-color: #edffec;
+  height: 150px;
+  width: 100%; 
+  display: flex;
+  flex-direction:row;
+  justify-content:space-evenly;
+  align-items: center;
+}
+
 .head_title
 {
-  color: rgb(255, 255, 255);
-  text-align: center;
+  font-size: 200%;
+  display:flex;
+  justify-content: center;
+  color: #edffec;
   font-family: 'Nunito', sans-serif;
 }
 .box_head
 {
+  background-color:rgb(55, 114, 255); 
+  height: 125px; 
+  width: 30%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .coll
 {
-  background-color: rgb(157, 157, 255);
+  background-color: rgb(55, 114, 255);
   font-family: 'Nunito', sans-serif;
   padding: 0;
   margin: 0;
 }
 #rank
 {
-  background-color: white;
+  background-color: #edffec;
   color: black;
   font-family: 'Nunito';
+}
+
+.head_all a
+{
+  color:#edffec;
+  text-decoration: none;
+  float: left;
+  transition: all ease-in-out .2s;
+  border:none;
+  position: relative;
+}
+.head_all a::after
+{
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: 50%;
+  bottom:0;
+  background-color: rgb(132, 89, 107);
+  transition: all ease-in-out .3s;
+}
+.head_all a:hover::after
+{
+  width: 100%;
+  left: 0;
+}
+
+.article
+{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  height: 900px;
+}
+
+
+
+#article_content
+{
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.bulle
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 20px;
+  height: 15%;
+  text-align: center;
+  background-color: rgb(55, 114, 255);
+  border-radius: 10PX;
+  padding: 10px;
+}
+.bulle:nth-child(1) 
+{
+  margin-left: -65%;
+}
+.bulle:nth-child(2) 
+{
+  margin-left: 45%;
+}
+.bulle:nth-child(3) 
+{
+  margin-left: -15%;
+}
+.bulle:nth-child(4) 
+{
+  margin-left: 35%;
+}
+.bulle:nth-child(5) 
+{
+  margin-left: -70%;
+}
+.bulle:nth-child(6) 
+{
+  margin-left: 70%;
+}
+
+.article h1
+{
+  width: 45%;
+  font-family: 'Nunito';
+}
+
+.title_right
+{
+  text-align: right;
+  margin-right: 2.5%;
+  display:flex;
+  flex-direction: row-reverse;
+}
+
+.title_left
+{
+  text-align: left;
+  margin-left: 2.5%;
+}
+
+
+.article img
+{
+  width: 25%;
+  height: 70%;
+  margin-top: 5%;
+}
+
+.artc_goal
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.artc_goal p
+{
+  width: 50%;
+}
+
+#article_content2
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.title_h
+{
+  text-align: center;
+}
+
+.all_developpers
+{
+  display: flex;
+  flex-direction: column;
+}
+.developpers
+{
+  height: 450px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+.developpers h2
+{
+  width: 15%;
+  font-size: 75px;
+}
+
+
+
+.developpers img
+{
+  height: 150px;
+  width: 8%;
+  margin-top: 0%;
+}
+
+.developpers div
+{
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.all_list
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style: none;
+  align-items: center;
+}
+
+.list
+{
+  padding: 2%;
+  width:25%;
+  background-color: rgb(55, 114, 255);
+  border-radius: 10PX;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.hewas
+{
+  font-size: 20px;
+  color: rgb(55, 114, 255);
+}
+
+
+#last_one
+{
+  height: 100%;
+}
+
+.foot
+{
+  background-color: rgb(55, 114, 255);
+  height: 150px;
+  width: 100%; 
+  display: flex;
+  flex-direction:row;
+  justify-content:space-evenly;
+  align-items: center;
+}
+
+.box_foot
+{
+  background-color:black; 
+  height: 125px; 
+  width: 30%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.foot_title
+{
+  font-size: 200%;
+  display:flex;
+  justify-content: center;
+  color: #edffec;
+  font-family: 'Nunito', sans-serif;
+}
+
+.foot a
+{
+  color:#edffec;
+  text-decoration: none;
+  float: left;
+  transition: all ease-in-out .2s;
+  border:none;
+  position: relative;
+}
+.foot a::after
+{
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: 50%;
+  bottom:0;
+  background-color: rgb(55, 114, 255);
+  transition: all ease-in-out .3s;
+}
+.foot a:hover::after
+{
+  width: 100%;
+  left: 0;
+}
+
+
+.image_ico
+{
+  background-image: url("./ico2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 125px; 
+  width: 30%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  
+}
+
+
+
+.developpers a
+{
+  color:white;
+  text-decoration: none;
+  float: left;
+  transition: all ease-in-out .2s;
+  border:none;
+  position: relative;
+}
+.developpers a::after
+{
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: 50%;
+  bottom:0;
+  background-color: rgb(55, 114, 255);
+  transition: all ease-in-out .3s;
+}
+.developpers a:hover::after
+{
+  width: 100%;
+  left: 0;
 }

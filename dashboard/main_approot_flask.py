@@ -15,7 +15,11 @@ l_lead = a.get_all()
 app = Flask(__name__)
 @app.route('/')
 def fonction_1():
-    return render_template("index.html", texte="<b>un mot<b/>", liste=l_lead, dico= {"cle1": 12, "cle2": (1, 2)})
+    return render_template("index.html", liste=l_lead)
+
+@app.route('/about')
+def fonction_2():
+    return render_template("about.html")
 
 
 if __name__ == '__main__':
