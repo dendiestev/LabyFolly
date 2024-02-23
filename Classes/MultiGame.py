@@ -1,6 +1,6 @@
 import pygame
 
-from Button import *
+from Classes.Button import *
 
 class MultiGame:
     def __init__(self, screen) -> None:

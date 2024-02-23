@@ -1,7 +1,7 @@
 import pygame
 
-from Map import *
-from Player import *
+from Classes.Map import *
+from Classes.Player import *
 
 class GameManager:
     def __init__(self, screen, screen_width, screen_height, cell_size, num_rows, num_cols, lvl, user_and_party_info) -> None:

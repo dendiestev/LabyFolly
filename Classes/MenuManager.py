@@ -1,10 +1,10 @@
 import pygame
 import time
 
-from Button import *
-from Leaderboard import *
-from NewGame import * 
-from MultiGame import *
+from Classes.Button import *
+from Classes.Leaderboard import *
+from Classes.NewGame import * 
+from Classes.MultiGame import *
 
 class MenuManager:
     def __init__(self, screen) -> None:

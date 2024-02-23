@@ -1,6 +1,6 @@
 import pygame
 from bdd.requests_bdd import Bdd
-from Button import *
+from Classes.Button import *
 
 class Leaderboard():
     def __init__(self, screen) -> None:
