@@ -2,8 +2,8 @@ import pygame
 import time
 from pygame import mixer
 
-from MenuManager import *
-from GameManager import *
+from Classes.MenuManager import *
+from Classes.GameManager import *
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
