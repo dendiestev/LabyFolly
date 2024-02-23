@@ -1,4 +1,6 @@
 import pygame
+import time
+from bdd.requests_bdd import *
 
 from Classes.Map import *
 from Classes.Player import *
@@ -6,6 +8,7 @@ from Classes.Player import *
 class GameManager:
     def __init__(self, screen, screen_width, screen_height, cell_size, num_rows, num_cols, lvl, user_and_party_info) -> None:
         self.screen = screen
+        self.BDD = Bdd("./bdd/BDD.db")
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.cell_size = cell_size
@@ -16,6 +19,7 @@ class GameManager:
         self.map = Map(screen, cell_size, num_rows, num_cols, None, None)
         self.player = Player(screen, self.map, cell_size)
         self.start = False
+        self.time = time.time
 
 
     def next_lvl(self):
@@ -46,7 +50,7 @@ class GameManager:
         self.map.centre()
         self.map.afficher_graphique()  
         # Affichage du player
-        self.player = Player(self.screen, map, self.cell_size)
+        self.player = Player(self.screen, self.map, self.cell_size)
 
     def update(self):
         if self.player.nextLevel == True:
@@ -70,3 +74,6 @@ class GameManager:
     def left(self):
         self.player.left(self.map.main_liste)
         self.map.afficher_update()
+
+    def save(self):
+        self.BDD.update_party(level=self.lvl, timer=self.time)

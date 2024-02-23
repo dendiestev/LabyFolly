@@ -26,7 +26,7 @@ def main():
     menuManager = MenuManager(screen)
     user_and_party_info = None
 
-    game_manager = GameManager(screen, screen_width, screen_height, cell_size, num_rows, lvl, num_cols, user_and_party_info)
+    game_manager = GameManager(screen, screen_width, screen_height, cell_size, num_rows, num_cols, lvl, user_and_party_info)
     
     while running:
         menuManager.update()
@@ -35,6 +35,7 @@ def main():
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                game_manager.save()
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
@@ -72,9 +73,43 @@ def main():
                         if menuManager.newgame.bstart.over():
                             check = menuManager.newgame.check()
                             if check == True:
-                                user_and_game_info = menuManager.newgame.start()
+                                user_and_party_info = menuManager.newgame.start()
+                                game_manager.user_and_party_info = user_and_party_info
                                 menuManager.etat = "game"
                                 menuManager.start_the_game == True
+                    if menuManager.etat == "multi":
+                        if menuManager.multigame.Aright1.over():
+                            if menuManager.multigame.p1 < len(menuManager.multigame.liste_perso)-1:
+                                menuManager.multigame.p1 +=1
+                            else:
+                                menuManager.multigame.p1 = 0
+                        if menuManager.multigame.AleftJ1.over():
+                            if menuManager.multigame.p1 > 0:
+                                menuManager.multigame.p1 -= 1
+                            else:
+                                menuManager.multigame.p1 = len(menuManager.multigame.liste_perso)-1
+                        if menuManager.multigame.Aright2.over():
+                            if menuManager.multigame.p2 < len(menuManager.multigame.liste_perso)-1:
+                                menuManager.multigame.p2 +=1
+                            else:
+                                menuManager.multigame.p2 = 0
+                        if menuManager.multigame.AleftJ2.over():
+                            if menuManager.multigame.p2 > 0:
+                                menuManager.multigame.p2 -= 1
+                            else:
+                                menuManager.multigame.p2 = len(menuManager.multigame.liste_perso)-1
+                        if menuManager.multigame.bmapcod.over():
+                            menuManager.multigame.map_choice = 0
+                        if menuManager.multigame.bmapftn.over():
+                            menuManager.multigame.map_choice = 1
+                        if menuManager.multigame.bmaphp.over():
+                            menuManager.multigame.map_choice = 2
+                        if menuManager.multigame.bmapmk.over():
+                            menuManager.multigame.map_choice = 3
+                        if menuManager.multigame.bmapvalo.over():
+                            menuManager.multigame.map_choice = 4
+                        if menuManager.multigame.bstart.over():
+                            check = menuManager.multigame.check()
                 if menuManager.etat in ["new game","leaderboard","multi"]:             
                     if menuManager.bback.over():
                         menuManager.etat = "menu"
