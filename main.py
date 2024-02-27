@@ -135,16 +135,16 @@ def main():
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    GameManager.top()
+                    game_manager.top()
                     pygame.display.update()
                 elif event.key == pygame.K_DOWN:
-                    GameManager.down()
+                    game_manager.down()
                     pygame.display.update()
                 elif event.key == pygame.K_RIGHT:
-                    GameManager.right()
+                    game_manager.right()
                     pygame.display.update()
                 elif event.key == pygame.K_LEFT:
-                    GameManager.left()
+                    game_manager.left()
                     pygame.display.update()
             
         pygame.display.flip()
