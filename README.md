@@ -14,4 +14,9 @@ Nous avons créé le labyrinth de vos rêves!
 
 - [ ] Affichage du timer
 - [ ] Lancer la partie avec les parmètre selectionner
-- [ ] afiichage de la texturue du chemain
+- [ ] Affichage de la texturue du chemain
+
+# Liste des chose a faire de Estavan
+
+- [ ] Amélioré le site (faire un truc stylé carré dans l'axe)
+      
