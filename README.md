@@ -2,4 +2,16 @@
 
 Nous avons créé le labyrinth de vos rêves!
 
-- [x] Affichage des shard
+# Liste des chose a faire de Jonas 
+
+- [ ] Affichage le conteur des shards
+- [ ] Colision avec les enemies
+- [ ] Activation des sharde
+- [ ] Game over
+
+
+# Liste des chose a faire de Elouen 
+
+- [ ] Affichage du timer
+- [ ] Lancer la partie avec les parmètre selectionner
+- [ ] afiichage de la texturue du chemain
