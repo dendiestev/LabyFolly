@@ -7,6 +7,7 @@ RED_LIGHT = (245, 66, 66)
 BROWN = (110, 70, 2)
 GREEN_LIGHT = (61, 255, 168)
 YELLOW = (240, 191, 31)
+PINK_LIGHT = (196, 59, 244)
 
 class Map:
 
@@ -22,10 +23,10 @@ class Map:
         self.screen_height = self.num_rows * self.cell_size
         self.screen = screen
         self.player_collision = player_collision
-        self.liste_enemy_collision = []
-        self.liste_enemies = []
         self.start = (0,0)
         self.jonesy = jonesy
+        self.slime = pygame.image.load("assets/mob/slime.png")
+        self.shard = pygame.image.load("assets/shard/shard.png")
         self.mur = mur
 
     def centre(self):
@@ -72,10 +73,10 @@ class Map:
         return random.randint(1, self.num_rows - 2)
 
     def casser(self):
-        l, c = self.select_random()
-        print(l, c)
+        l, c = self.select_random() 
         var = 0
         supp = 0
+        # print(l, c)
         if self.main_liste[l][c] == -2:
             if self.main_liste[l - 1][c] != self.main_liste[l + 1][c]:
                 if self.main_liste[l - 1][c] < self.main_liste[l + 1][c]:
@@ -134,50 +135,28 @@ class Map:
             print("")
 
     def afficher_graphique(self):
-        liste = []
         for x in range(len(self.main_liste)):
             for y in range(len(self.main_liste[x])):
                 if self.main_liste[x][y] in [-1, -2, -3, -4]:
-                    # colliding_block = pygame.Rect(x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
-                    # self.player_collision.append(colliding_block)
-                    # pygame.draw.rect(self.screen, BLACK, colliding_block)
+                    colliding_block = pygame.Rect(x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
+                    self.player_collision.append(colliding_block)
                     self.mur = pygame.transform.scale(self.mur, (self.cell_size, self.cell_size))
-                    self.screen.blit(self.mur, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas))
+                    self.screen.blit(self.mur, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
+                    # pygame.draw.rect(self.screen, BLACK, colliding_block)
                 else:
                     pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
-                    liste.append(x*self.cell_size + self.pas_droite)
-                    liste.append(y*self.cell_size + self.pas_bas)
-                    self.liste_enemy_collision.append(liste)
-                    liste = []
-                if x == len(self.main_liste)-2 and y == len(self.main_liste[x])-2:
-                    colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
-                    pygame.draw.rect(self.screen, YELLOW, colliding_block)
-                    self.start = (x,y)
-                if x == 1 and y == 1:
-                    colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
-                    pygame.draw.rect(self.screen, YELLOW, colliding_block)
-                    self.finish = (x,y)
-                if self.main_liste[x][y] == 7:
-                    colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4, self.cell_size/2, self.cell_size/2)
-                    # pygame.draw.rect(self.screen, RED_LIGHT, colliding_block)
-                    self.jonesy = pygame.transform.scale(self.jonesy, (10, 10))
-                    self.screen.blit(self.jonesy, (x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4))
-        for element in self.liste_enemy_collision:
-            index = self.liste_enemy_collision.index(element)
-            if element in self.liste_enemy_collision[0:index]:
-                self.liste_enemy_collision.remove(element)
     
-    def afficher_update(self):
-        liste = []
+    
+    def afficher_update(self, dico_enemie:dict, dico_shard:dict):
+        print(self.cell_size)
+        print([element[1] for element in dico_enemie.values()])
         for x in range(len(self.main_liste)):
             for y in range(len(self.main_liste[x])):
                 if self.main_liste[x][y] == 0:
                     pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
-                    liste.append(x*self.cell_size + self.pas_droite)
-                    liste.append(y*self.cell_size + self.pas_bas)
-                    self.liste_enemy_collision.append(liste)
-                    liste = []
-                    self.main_liste[x][y] == 1
+                    self.main_liste[x][y] = 1
+                if [x,y] in [element[1] for element in dico_enemie.values()]:
+                    pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
                 if x == len(self.main_liste)-2 and y == len(self.main_liste[x])-2:
                     colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
                     pygame.draw.rect(self.screen, YELLOW, colliding_block)
@@ -185,8 +164,17 @@ class Map:
                     colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
                     pygame.draw.rect(self.screen, YELLOW, colliding_block)
                     self.finish = (x,y)
-                if self.main_liste[x][y] == 7:
+                if [x,y] in [element[0] for element in dico_enemie.values()]:
                     # colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4, self.cell_size/2, self.cell_size/2)
-                    # pygame.draw.rect(self.screen, RED_LIGHT, colliding_block)
+                    # pygame.draw.rect(self.screen, GREEN_LIGHT, colliding_block)
+                    self.slime = pygame.transform.scale(self.slime, (self.cell_size/2, self.cell_size/2))
+                    self.screen.blit(self.slime, (x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4))
+                if [x,y] in dico_shard.values():
+                    # colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4, self.cell_size/2, self.cell_size/2)
+                    # pygame.draw.rect(self.screen, PINK_LIGHT, colliding_block)
+                    self.shard = pygame.transform.scale(self.shard, (self.cell_size/2, self.cell_size/2))
+                    self.screen.blit(self.shard, (x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4))
+                
+                if self.main_liste[x][y] == 7:
                     self.jonesy = pygame.transform.scale(self.jonesy, (self.cell_size/2, self.cell_size/2))
                     self.screen.blit(self.jonesy, (x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4))

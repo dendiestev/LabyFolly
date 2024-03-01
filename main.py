@@ -14,7 +14,7 @@ def main():
     # m_valo = "textures/valo/valoMusic.mp3"
     # mixer.music.load(m_valo)
     lvl = 0
-    cell_size = 30
+    cell_size = 60
     num_rows = 5
     num_cols = 5
     screen_width = 1350 #taille de chemin -> 20 * 30 (le nombre de case de chemin + 5 (taille de mur) * 29 (nombre de mur)
