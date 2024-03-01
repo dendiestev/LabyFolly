@@ -81,6 +81,8 @@ class GameManager:
         print("Sauvegarde en cours...")
 
     def showTimer(self):
+        outEnd = pygame.rect.Rect(100, 100, 500, 100)
+        pygame.draw.rect(self.screen, (0, 0, 0), outEnd)
         ticks = pygame.time.get_ticks()
         millis = ticks%1000
         seconds = int(ticks/1000 % 60)
