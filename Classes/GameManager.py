@@ -1,7 +1,7 @@
 import pygame
-import time
-from bdd.requests_bdd import *
+import pygame.freetype
 
+from bdd.requests_bdd import *
 from Classes.Map import *
 from Classes.Player import *
 
@@ -19,8 +19,9 @@ class GameManager:
         self.map = Map(screen, cell_size, num_rows, num_cols, None, None)
         self.player = Player(screen, self.map, cell_size)
         self.start = False
-        self.time = time.time
-
+        self.clock = pygame.time.Clock()
+        self.font = pygame.freetype.SysFont(None, 34)
+        
 
     def next_lvl(self):
         self.screen.fill(BLACK)
@@ -48,11 +49,12 @@ class GameManager:
 
         # Affichage de la map grace à Map.py
         self.map.centre()
-        self.map.afficher_graphique()  
+        self.map.afficher_graphique() 
         # Affichage du player
         self.player = Player(self.screen, self.map, self.cell_size)
 
     def update(self):
+        self.showTimer()
         if self.player.nextLevel == True:
             self.next_lvl()
         if not self.start:
@@ -76,4 +78,14 @@ class GameManager:
         self.map.afficher_update()
 
     def save(self):
-        self.BDD.update_party(level=self.lvl, timer=self.time)
+        print("Sauvegarde en cours...")
+
+    def showTimer(self):
+        ticks = pygame.time.get_ticks()
+        millis = ticks%1000
+        seconds = int(ticks/1000 % 60)
+        minutes = int(ticks/60000 % 24)
+        out = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
+        self.font.render_to(self.screen, (100, 100), out, pygame.Color('white'))
+        pygame.display.flip()
+        self.clock.tick(60)
