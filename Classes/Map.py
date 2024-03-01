@@ -72,10 +72,10 @@ class Map:
         return random.randint(1, self.num_rows - 2)
 
     def casser(self):
-        l, c = self.select_random() 
+        l, c = self.select_random()
+        print(l, c)
         var = 0
         supp = 0
-        # print(l, c)
         if self.main_liste[l][c] == -2:
             if self.main_liste[l - 1][c] != self.main_liste[l + 1][c]:
                 if self.main_liste[l - 1][c] < self.main_liste[l + 1][c]:
@@ -138,10 +138,11 @@ class Map:
         for x in range(len(self.main_liste)):
             for y in range(len(self.main_liste[x])):
                 if self.main_liste[x][y] in [-1, -2, -3, -4]:
-                    colliding_block = pygame.Rect(x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
-                    self.player_collision.append(colliding_block)
-                    self.screen.blit(self.mur, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
+                    # colliding_block = pygame.Rect(x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
+                    # self.player_collision.append(colliding_block)
                     # pygame.draw.rect(self.screen, BLACK, colliding_block)
+                    self.mur = pygame.transform.scale(self.mur, (self.cell_size, self.cell_size))
+                    self.screen.blit(self.mur, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas))
                 else:
                     pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
                     liste.append(x*self.cell_size + self.pas_droite)
@@ -189,4 +190,3 @@ class Map:
                     # pygame.draw.rect(self.screen, RED_LIGHT, colliding_block)
                     self.jonesy = pygame.transform.scale(self.jonesy, (self.cell_size/2, self.cell_size/2))
                     self.screen.blit(self.jonesy, (x*self.cell_size+ self.pas_droite + self.cell_size/4, y*self.cell_size + self.pas_bas + self.cell_size/4))
-    
