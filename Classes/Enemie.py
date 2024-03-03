@@ -27,7 +27,9 @@ class Enemie:
         while random_x is None or random_y is None or random_x == random_y:
             random_x = random.randint(1, (self.num_cols-1)/2)*2-1
             random_y = random.randint(1, (self.num_rows-1)/2)*2-1
-        self.enemie[f"{len(self.enemie)+1}"] = [[random_x, random_y], [None,None]]
+        direction = ["top", "right", "down", "left"]
+        random.shuffle(direction)
+        self.enemie[f"{len(self.enemie)+1}"] = [[random_x, random_y], [None,None], direction]
     
     def create_enemies(self, number):
         for _ in range(number):
@@ -35,31 +37,41 @@ class Enemie:
 
     def move_enemie(self, main_liste):
         for cle, val in self.enemie.items():
+            direction = val[2]
             move = False
-            direction = ["top", "right", "down", "left"]
-            random.shuffle(direction)
-            for i in direction:
-                if not move:
-                    if i == "top":
-                        if self.canMoveTop(val, main_liste):
-                            val[1] = [val[0][0], val[0][1]]
-                            self.top(val)
-                            move = True
-                    if i == "right":
-                        if self.canMoveRight(val, main_liste):
-                            val[1] = [val[0][0], val[0][1]]
-                            self.right(val)
-                            move = True
-                    if i == "down":
-                        if self.canMoveDown(val, main_liste):
-                            val[1] = [val[0][0], val[0][1]]
-                            self.down(val)
-                            move = True
-                    if i == "left":
-                        if self.canMoveLeft(val, main_liste):
-                            val[1] = [val[0][0], val[0][1]]
-                            self.left(val)
-                            move = True
+            while not move:
+                if direction[0] == "top":
+                    if self.canMoveTop(val, main_liste):
+                        val[1] = [val[0][0], val[0][1]]
+                        self.top(val)
+                        move = True
+                    else: 
+                        direction = direction[1:] + ["top"]
+
+                if direction[0] == "right":
+                    if self.canMoveRight(val, main_liste):
+                        val[1] = [val[0][0], val[0][1]]
+                        self.right(val)
+                        move = True
+                    else: 
+                        direction = direction[1:] + ["right"]
+
+                if direction[0] == "down":
+                    if self.canMoveDown(val, main_liste):
+                        val[1] = [val[0][0], val[0][1]]
+                        self.down(val)
+                        move = True
+                    else: 
+                        direction = direction[1:] + ["down"]
+
+                if direction[0] == "left":
+                    if self.canMoveLeft(val, main_liste):
+                        val[1] = [val[0][0], val[0][1]]
+                        self.left(val)
+                        move = True
+                    else: 
+                        direction = direction[1:] + ["left"]
+            val[2] = direction
 
     """def direction(self):
         enemie = self.enemie["1"]

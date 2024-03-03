@@ -148,8 +148,6 @@ class Map:
     
     
     def afficher_update(self, dico_enemie:dict, dico_shard:dict):
-        print(self.cell_size)
-        print([element[1] for element in dico_enemie.values()])
         for x in range(len(self.main_liste)):
             for y in range(len(self.main_liste[x])):
                 if self.main_liste[x][y] == 0:
