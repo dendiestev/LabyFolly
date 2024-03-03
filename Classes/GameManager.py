@@ -23,11 +23,14 @@ class GameManager:
         self.enemie = Enemie(self.num_cols, self.num_rows)
         self.start = False
         self.clock = pygame.time.Clock()
-        self.font = pygame.freetype.SysFont("Monaco", 34)
-        self.liste_perso = ["assets/characters/jonesy.png","assets/characters/jonesy_du_bunker.png","assets/characters/jonesy_sombre.png","assets/characters/jonesy_le_noir.png","assets/characters/jonesy_le_lgbtqia2+.png"]
-        
+        self.font = pygame.freetype.SysFont(None, 34)
+        self.perso_index = 0
+        self.map_index = 0
+        self.perso_liste = ["assets/characters/jonesy.png","assets/characters/jonesy_du_bunker.png","assets/characters/jonesy_sombre.png","assets/characters/jonesy_le_noir.png","assets/characters/jonesy_le_lgbtqia2+.png"]
+        self.liste_map = ["assets/textures/cod/mur_cod.png", "assets/textures/fortnite/mur_fortnite.png", "assets/textures/hp/brume_hp.png", "assets/textures/mk/lave_mk.png", "assets/textures/valo/mur_valo.png"]
 
     def next_lvl(self):
+        print(self.liste_map[self.map_index])
         self.screen.fill(BLACK)
         self.player.nextLevel = False
         self.lvl += 1
@@ -40,13 +43,13 @@ class GameManager:
             self.num_rows += (self.lvl+1)
 
         if self.screen_width < self.cell_size * self.num_rows or self.screen_height < self.cell_size * self.num_cols:
-            if self.cell_size >= 50:
+            if self.cell_size >= 60:
                 self.cell_size -= 20
-            elif self.cell_size >= 20:
+            elif self.cell_size >= 30:
                 self.cell_size -= 5
             elif self.cell_size >= 10:
                 self.cell_size -= 3
-        self.map = Map(self.screen, self.cell_size, self.num_rows, self.num_cols, pygame.image.load("assets/characters/njonesy_topview.png").convert_alpha(), pygame.image.load("assets/textures/valo/mur_valo.png").convert_alpha())
+        self.map = Map(self.screen, self.cell_size, self.num_rows, self.num_cols, pygame.image.load(self.perso_liste[self.perso_index]).convert_alpha(), pygame.image.load(self.liste_map[self.map_index]).convert_alpha())
 
         self.map.generer_matrice()
         self.map.matrice_finale()
@@ -59,9 +62,7 @@ class GameManager:
         # Affichage de la map grace à Map.py
         self.map.centre()
         self.map.afficher_graphique()
-        self.player.cell_size = self.cell_size
-        self.player.position_x = self.num_cols-2
-        self.player.position_y = self.num_rows-2
+        self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
         self.enemie = Enemie(self.num_cols, self.num_rows)
         self.enemie.create_enemies(self.lvl+3)
         self.enemie.create_shards(self.lvl*3)
@@ -69,8 +70,6 @@ class GameManager:
 
     def update(self):
         self.showTimer()
-        self.showLife()
-        self.showShard()
         if self.player.nextLevel == True:
             self.next_lvl()
         if not self.start:
@@ -80,52 +79,34 @@ class GameManager:
     def top(self):
         self.enemie.move_enemie(self.map.main_liste)
         self.player.top(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def down(self):
         self.enemie.move_enemie(self.map.main_liste)
         self.player.down(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def right(self):
         self.enemie.move_enemie(self.map.main_liste)
         self.player.right(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
         
     def left(self):
         self.enemie.move_enemie(self.map.main_liste)
         self.player.left(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def save(self):
         self.BDD.update_party(level=self.lvl, timer=self.time)
 
     def showTimer(self):
-        outEnd = pygame.rect.Rect(100, 100, 500, 100)
-        pygame.draw.rect(self.screen, (0, 0, 0), outEnd)
+        outEnd = pygame.rect.Rect(1150, 150, 175, 100)
+        pygame.draw.rect(self.screen, (133, 133, 133), outEnd)
         ticks = pygame.time.get_ticks()
         millis = ticks%1000
         seconds = int(ticks/1000 % 60)
         minutes = int(ticks/60000 % 24)
         out = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
-        self.font.render_to(self.screen, (100, 100), out, pygame.Color('white'))
-        pygame.display.flip()
-        self.clock.tick(60)
-    
-    def showShard(self):
-        b = pygame.transform.scale(self.map.shard, (100,100))
-        self.screen.blit(b, (1030,170))
-        self.font.render_to(self.screen, (1000, 170), f"{self.player.shard}", pygame.Color('white'))
-        pygame.display.flip()
-        self.clock.tick(60)
-
-    def showLife(self):
-        b = pygame.image.load(self.liste_perso[0]).convert_alpha()
-        self.screen.blit(b, (1030,30))
-        self.font.render_to(self.screen, (1000, 30), "♥"* self.player.life, pygame.Color('white'))
+        self.font.render_to(self.screen, (1160, 188), out, pygame.Color('white'))
         pygame.display.flip()
         self.clock.tick(60)
