@@ -10,7 +10,7 @@ class NewGame():
 
         self.screen = screen
         self.liste_perso = ["assets/characters/jonesy.png","assets/characters/jonesy_du_bunker.png","assets/characters/jonesy_sombre.png","assets/characters/jonesy_le_noir.png","assets/characters/jonesy_le_lgbtqia2+.png"]
-        self.perso = 0
+        self.perso_index = 0
 
         self.BDD = Bdd("./bdd/BDD.db")
         
@@ -25,7 +25,7 @@ class NewGame():
         self.bstart =Button(screen=self.screen, pos=(825,455), path_img_down="assets/buttons/start/down.png", path_img_up="assets/buttons/start/up.png")
         
         self.list_map = [(self.bmapcod.pos[0]-5, self.bmapcod.pos[1]-5, 210,210), (self.bmapftn.pos[0]-5, self.bmapftn.pos[1]-5, 210,210),(self.bmaphp.pos[0]-5, self.bmaphp.pos[1]-5, 210,210),(self.bmapmk.pos[0]-5, self.bmapmk.pos[1]-5, 210,210),(self.bmapvalo.pos[0]-5, self.bmapvalo.pos[1]-5, 210,210)]
-        self.map = 0
+        self.map_index = 0
 
         self.base_font2 = pygame.font.SysFont("Monaco", 32)
         self.base_font = pygame.font.SysFont("Monaco", 32)
@@ -72,16 +72,17 @@ class NewGame():
 
     def start(self):
         print("start")
-        self.BDD.create_player(pseudo=self.user_text, character=self.perso)
-        self.BDD.create_party(player=self.user_text, timer="00:00:00",level=1,map=self.map)
+        self.BDD.create_player(pseudo=self.user_text, character=self.perso_index)
+        self.BDD.create_party(player=self.user_text, timer="00:00:00",level=1,map=self.map_index)
+        print(self.user_text, self.perso_index, self.map_index)
         return (self.BDD.get_player, self.BDD.get_party)
 
     def draw_perso(self):
-        b = pygame.image.load(self.liste_perso[self.perso]).convert_alpha()
+        b = pygame.image.load(self.liste_perso[self.perso_index]).convert_alpha()
         self.screen.blit(b, (930,70))
 
     def update(self):
-        pygame.draw.rect(self.screen, (255,255,255), self.list_map[self.map])
+        pygame.draw.rect(self.screen, (255,255,255), self.list_map[self.map_index])
 
         self.bstart.update()
         self.draw_perso()
@@ -98,7 +99,7 @@ class NewGame():
         if self.active:
             self.color = self.color_active
         else:
-            if self.user_text == "Max 15 charactere":
+            if self.user_text == "Max 15 charactères":
                 self.user_text = 'Your pseudo'
             self.color = self.color_passive
             
@@ -107,6 +108,3 @@ class NewGame():
         text_surface = self.base_font.render(self.user_text, True, (255, 255, 255))
         
         self.screen.blit(text_surface, ((270)-(len(self.user_text)*2), self.input_rect.y+15))
-
-        
-            
