@@ -1,4 +1,4 @@
-# Labyrinth
+# LabyFunny
 
 Nous avons créé le labyrinth de vos rêves!
 
