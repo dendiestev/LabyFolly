@@ -12,7 +12,7 @@ Nous avons créé le labyrinth de vos rêves!
 
 # Liste des chose a faire de Elouen 
 
-- [ ] Affichage du timer
+- [x] Affichage du timer
 - [ ] Lancer la partie avec les parmètre selectionner
 - [ ] Affichage de la texturue du chemain
 
