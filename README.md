@@ -13,8 +13,8 @@ Nous avons créé le labyrinth de vos rêves!
 # Liste des chose a faire de Elouen 
 
 - [x] Affichage du timer
-- [ ] Lancer la partie avec les parmètre selectionner
-- [ ] Affichage de la texturue du chemain
+- [x] Lancer la partie avec les parmètre selectionner
+- [x] Affichage de la texturue du chemin
 
 # Liste des chose a faire de Estavan
 
