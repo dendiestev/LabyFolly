@@ -17,10 +17,10 @@ def main():
     cell_size = 60
     num_rows = 5
     num_cols = 5
-    screen_width = 1350 #taille de chemin -> 20 * 30 (le nombre de case de chemin + 5 (taille de mur) * 29 (nombre de mur)
+    screen_width = 1350 # Taille de chemin -> 20 * 30 (le nombre de case de chemin + 5 (taille de mur) * 29 (nombre de mur) (NORMALEMENT 1350)
     screen_height = 1050
     screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption(f"Labyrinthe")
+    pygame.display.set_caption(f"LabyFunny - Départ")
     
     running = True
     menuManager = MenuManager(screen)
@@ -51,25 +51,25 @@ def main():
                             menuManager.l.reload()
                     if menuManager.etat == "new game":
                         if menuManager.newgame.baright.over():
-                            if menuManager.newgame.perso < len(menuManager.newgame.liste_perso)-1:
-                                menuManager.newgame.perso +=1
+                            if menuManager.newgame.perso_index < len(menuManager.newgame.liste_perso)-1:
+                                menuManager.newgame.perso_index +=1
                             else:
-                                menuManager.newgame.perso = 0
+                                menuManager.newgame.perso_index = 0
                         if menuManager.newgame.baleft.over():
-                            if menuManager.newgame.perso > 0:
-                                menuManager.newgame.perso -= 1
+                            if menuManager.newgame.perso_index > 0:
+                                menuManager.newgame.perso_index -= 1
                             else:
-                                menuManager.newgame.perso = len(menuManager.newgame.liste_perso)-1
+                                menuManager.newgame.perso_index = len(menuManager.newgame.liste_perso)-1
                         if menuManager.newgame.bmapcod.over():
-                            menuManager.newgame.map = 0
+                            menuManager.newgame.map_index = 0
                         if menuManager.newgame.bmapftn.over():
-                            menuManager.newgame.map = 1
+                            menuManager.newgame.map_index = 1
                         if menuManager.newgame.bmaphp.over():
-                            menuManager.newgame.map = 2
+                            menuManager.newgame.map_index = 2
                         if menuManager.newgame.bmapmk.over():
-                            menuManager.newgame.map = 3
+                            menuManager.newgame.map_index = 3
                         if menuManager.newgame.bmapvalo.over():
-                            menuManager.newgame.map = 4
+                            menuManager.newgame.map_index = 4
                         if menuManager.newgame.bstart.over():
                             check = menuManager.newgame.check()
                             if check == True:
@@ -77,6 +77,8 @@ def main():
                                 game_manager.user_and_party_info = user_and_party_info
                                 menuManager.etat = "game"
                                 menuManager.start_the_game == True
+                                game_manager.perso_index = menuManager.newgame.perso_index
+                                game_manager.map_index = menuManager.newgame.map_index
                     if menuManager.etat == "multi":
                         if menuManager.multigame.Aright1.over():
                             if menuManager.multigame.p1 < len(menuManager.multigame.liste_perso)-1:
