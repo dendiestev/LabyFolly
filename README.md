@@ -14,7 +14,7 @@ Nous avons créé le labyrinth de vos rêves!
 
 - [x] Affichage du timer
 - [x] Lancer la partie avec les parmètre selectionner
-- [x] Affichage de la texturue du chemin
+- [ ] Affichage de la texturue du chemin
 
 # Liste des chose a faire de Estavan
 
