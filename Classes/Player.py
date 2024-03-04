@@ -25,6 +25,7 @@ class Player():
         self.life = 3
         self.shard = 0
         self.power = False
+        self.power_step = 0
         self.nextLevel = False
         self.cell_size = cell_size
 
@@ -51,9 +52,9 @@ class Player():
 
     def update_shard(self):
         if self.power != False:
-            self.shard -= 1
-            if self.shard == 0:
-                self.power = False
+            self.power_step -= 1
+        if self.power_step <= 0:
+            self.power = False
 
     def top(self, main_liste):
         if self.canMoveTop(main_liste):

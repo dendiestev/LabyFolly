@@ -26,7 +26,7 @@ def main():
     menuManager = MenuManager(screen)
     user_and_party_info = None
 
-    game_manager = GameManager(screen, screen_width, screen_height, cell_size, num_rows, num_cols, lvl, user_and_party_info)
+    game_manager = GameManager(screen, screen_width, screen_height, cell_size, num_rows, num_cols, lvl, user_and_party_info, menuManager)
     
     while running:
         menuManager.update()
@@ -147,6 +147,13 @@ def main():
                     pygame.display.update()
                 elif event.key == pygame.K_LEFT:
                     game_manager.left()
+                    pygame.display.update()
+                if event.key == pygame.K_SPACE:
+                    if game_manager.player.shard > 0:
+                        game_manager.player.power_step += 10
+                        game_manager.player.power = True
+                        game_manager.player.shard -= 1
+                        game_manager.affichage_update()
                     pygame.display.update()
             
         pygame.display.flip()

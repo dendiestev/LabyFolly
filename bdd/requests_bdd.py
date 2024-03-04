@@ -66,6 +66,6 @@ class Bdd:
             if map == None:
                 map = result["map"]
         cursor = self.open_cursor()
-        request = f"UPDATE Party SET timer = ?, level = ?, map = ? WHERE pseudo = ?"
+        request = f"UPDATE Party SET timer = ?, level = ?, map = ? WHERE player = ?"
         cursor.execute(request, (timer, level, map, pseudo))
         self.connection.commit()

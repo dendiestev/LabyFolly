@@ -74,8 +74,7 @@ class NewGame():
         print("start")
         self.BDD.create_player(pseudo=self.user_text, character=self.perso_index)
         self.BDD.create_party(player=self.user_text, timer="00:00:00",level=1,map=self.map_index)
-        print(self.user_text, self.perso_index, self.map_index)
-        return (self.BDD.get_player, self.BDD.get_party)
+        return (self.BDD.get_player(pseudo=self.user_text), self.BDD.get_party(pseudo=self.user_text))
 
     def draw_perso(self):
         b = pygame.image.load(self.liste_perso[self.perso_index]).convert_alpha()
