@@ -19,7 +19,7 @@ class GameManager:
         self.num_cols = num_cols
         self.lvl = lvl
         self.user_and_party_info = user_and_party_info
-        self.map = Map(screen, cell_size, num_rows, num_cols, None, None)
+        self.map = Map(screen, cell_size, num_rows, num_cols, None, None, None)
         self.player = Player(self.screen, cell_size, self.num_cols, self.num_rows)
         self.enemie = Enemie(self.num_cols, self.num_rows)
         self.start = False
@@ -27,6 +27,7 @@ class GameManager:
         self.font = pygame.freetype.SysFont("Monaco", 34)
         self.perso_index = 0
         self.map_index = 0
+        self.path_liste = ["assets/textures/cod/route_cod.png", "assets/textures/fortnite/herbe_fortnite.png", "assets/textures/hp/brume_hp.png", "assets/textures/mk/terre_mk.png", "assets/textures/valo/neige_valo.png"]
         self.perso_liste = ["assets/characters/jonesy.png","assets/characters/jonesy_du_bunker.png","assets/characters/jonesy_sombre.png","assets/characters/jonesy_le_noir.png","assets/characters/jonesy_le_lgbtqia2+.png"]
         self.liste_map = ["assets/textures/cod/mur_cod.png", "assets/textures/fortnite/mur_fortnite.png", "assets/textures/hp/brume_hp.png", "assets/textures/mk/lave_mk.png", "assets/textures/valo/mur_valo.png"]
         self.life = pygame.image.load("assets/life/life.png")
@@ -53,7 +54,7 @@ class GameManager:
                 self.cell_size -= 5
             elif self.cell_size >= 10:
                 self.cell_size -= 3
-        self.map = Map(self.screen, self.cell_size, self.num_rows, self.num_cols, pygame.image.load(self.perso_liste[self.perso_index]).convert_alpha(), pygame.image.load(self.liste_map[self.map_index]).convert_alpha())
+        self.map = Map(self.screen, self.cell_size, self.num_rows, self.num_cols, pygame.image.load(self.perso_liste[self.perso_index]).convert_alpha(), pygame.image.load(self.liste_map[self.map_index]).convert_alpha(), pygame.image.load(self.path_liste[self.map_index]).convert_alpha())
 
         self.map.generer_matrice()
         self.map.matrice_finale()
