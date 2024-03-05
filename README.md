@@ -8,6 +8,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Colision avec les enemies
 - [X] Activation des sharde
 - [ ] Game over
+- [ ] 1v1
 
 
 # Liste des chose a faire de Elouen 
@@ -15,6 +16,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Affichage du timer
 - [x] Lancer la partie avec les parmètre selectionner
 - [x] Affichage de la texturue du chemin
+- [ ] Refaire UI
 
 # Liste des chose a faire de Estavan
 
