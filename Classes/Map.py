@@ -13,7 +13,7 @@ class Map:
 
     ### Initialisation ###
 
-    def __init__(self, screen, cell_size, num_rows, num_cols, jonesy, mur, player_collision=[], collision_list=[]):
+    def __init__(self, screen, cell_size, num_rows, num_cols, jonesy, mur, sol, player_collision=[], collision_list=[]):
         self.collision_list = collision_list
         self.main_liste = []
         self.cell_size = cell_size
@@ -28,6 +28,7 @@ class Map:
         self.slime = pygame.image.load("assets/mob/slime.png")
         self.shard = pygame.image.load("assets/shard/shard.png")
         self.mur = mur
+        self.sol = sol
 
     def centre(self):
         screen_size = self.screen.get_size()
@@ -144,17 +145,21 @@ class Map:
                     self.screen.blit(self.mur, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
                     # pygame.draw.rect(self.screen, BLACK, colliding_block)
                 else:
-                    pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
+                    self.sol = pygame.transform.scale(self.sol, (self.cell_size, self.cell_size))
+                    self.screen.blit(self.sol, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
+                    # pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
     
     
     def afficher_update(self, dico_enemie:dict, dico_shard:dict):
         for x in range(len(self.main_liste)):
             for y in range(len(self.main_liste[x])):
                 if self.main_liste[x][y] == 0:
-                    pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
+                    self.sol = pygame.transform.scale(self.sol, (self.cell_size, self.cell_size))
+                    self.screen.blit(self.sol, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
                     self.main_liste[x][y] = 1
                 if [x,y] in [element[1] for element in dico_enemie.values()]:
-                    pygame.draw.rect(self.screen, WHITE, (x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size))
+                    self.sol = pygame.transform.scale(self.sol, (self.cell_size, self.cell_size))
+                    self.screen.blit(self.sol, (x*self.cell_size + self.pas_droite, y*self.cell_size + self.pas_bas))
                 if x == len(self.main_liste)-2 and y == len(self.main_liste[x])-2:
                     colliding_block = pygame.Rect(x*self.cell_size+ self.pas_droite, y*self.cell_size + self.pas_bas, self.cell_size, self.cell_size)
                     pygame.draw.rect(self.screen, YELLOW, colliding_block)
