@@ -30,6 +30,7 @@ class Player():
         self.cell_size = cell_size
 
     def check_colison(self, enemie:dict, shard:dict, map):
+        liste_coordone = []
         if [self.position_x, self.position_y] in [element[0] for element in enemie.values()]:
             element_del = []
             for cle,val in enemie.items():
@@ -38,8 +39,9 @@ class Player():
                     if self.power == False:
                         self.life -=1
             for i in element_del:
+                liste_coordone.append(enemie[i][0])
                 del enemie[i]
-            map.afficher_update(enemie, shard)
+            map.update_shards_and_enemies(liste_coordone,enemie, shard)
         if [self.position_x, self.position_y] in shard.values():
             element_del = []
             for cle,val in shard.items():
@@ -47,8 +49,9 @@ class Player():
                     element_del.append(cle)
                     self.shard += 1
             for i in element_del:
+                liste_coordone.append(shard[i])
                 del shard[i]
-            map.afficher_update(enemie, shard)
+            map.update_shards_and_enemies(liste_coordone,enemie, shard)
 
     def update_shard(self):
         if self.power != False:

@@ -35,6 +35,12 @@ class Map:
         self.pas_droite = ((screen_size[0]-self.screen_width)/2)
         self.pas_bas = ((screen_size[1]-self.screen_height)/2)
 
+    def update_shards_and_enemies(self, liste_coordone:list, dico_enemie, dico_shard):
+        print(liste_coordone)
+        for coor in liste_coordone:
+            self.sol = pygame.transform.scale(self.sol, (self.cell_size, self.cell_size))
+            self.screen.blit(self.sol, (int(coor[0])*self.cell_size + self.pas_droite, int(coor[1])*self.cell_size + self.pas_bas))
+        self.afficher_update(dico_enemie, dico_shard)
     ### Dessin ###
 
     ## -1 => bords

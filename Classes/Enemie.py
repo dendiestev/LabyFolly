@@ -12,7 +12,7 @@ class Enemie:
     def create_shard(self):
         random_x = None
         random_y = None
-        while random_x is None or random_y is None or random_x == random_y:
+        while random_x is None or random_y is None or random_x == random_y or [random_x, random_y] in self.shard.values():
             random_x = random.randint(1, (self.num_cols-1)/2)*2-1
             random_y = random.randint(1, (self.num_rows-1)/2)*2-1
         self.shard[f"{len(self.shard)+1}"] = [random_x, random_y]
@@ -24,7 +24,7 @@ class Enemie:
     def create_enemie(self):
         random_x = None
         random_y = None
-        while random_x is None or random_y is None or random_x == random_y:
+        while random_x is None or random_y is None or random_x == random_y or [random_x, random_y] in [element[0] for element in self.enemie.values()]:
             random_x = random.randint(1, (self.num_cols-1)/2)*2-1
             random_y = random.randint(1, (self.num_rows-1)/2)*2-1
         direction = ["top", "right", "down", "left"]

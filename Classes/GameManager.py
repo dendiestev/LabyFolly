@@ -95,6 +95,7 @@ class GameManager:
             print("Ta perdu nulosssssss !!!!!!")
             self.save()
             self.menu_manager.etat = "menu"
+            self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
             
     def top(self):
         self.enemie.move_enemie(self.map.main_liste)
