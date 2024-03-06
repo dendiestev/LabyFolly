@@ -30,13 +30,13 @@ class MultiGame:
     def draw_perso1(self):
         b = pygame.image.load(self.liste_perso[self.p1]).convert_alpha()
         self.screen.blit(b, (170,70))
-        text_surface = self.base_font.render("Player 1", True, (0, 0, 0))
+        text_surface = self.base_font.render("Player 1", True, (255, 255, 255))
         self.screen.blit(text_surface, (140, 30))
 
     def draw_perso2(self):
         b = pygame.image.load(self.liste_perso[self.p2]).convert_alpha()
         self.screen.blit(b, (1030,70))
-        text_surface = self.base_font.render("Player 2", True, (0, 0, 0))
+        text_surface = self.base_font.render("Player 2", True, (255, 255, 255))
         self.screen.blit(text_surface, (1000, 30))
     
     def draw_persos(self):
@@ -60,5 +60,6 @@ class MultiGame:
         pygame.draw.rect(self.screen, (255,255,255), self.list_map[self.map_choice])
 
     def update(self):
+        self.screen.fill((43, 43, 43))
         self.draw_buttons()
         self.draw_persos()
