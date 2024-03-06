@@ -17,6 +17,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Lancer la partie avec les parmètre selectionner
 - [x] Affichage de la texturue du chemin
 - [x] Refaire UI
+- [ ] Textures
 - [ ] Son
 - [ ] Musique boucle fin de niveau
 
