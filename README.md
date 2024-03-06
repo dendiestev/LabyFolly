@@ -9,6 +9,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [X] Activation des sharde
 - [ ] Game over
 - [ ] 1v1
+- [ ] Document présentation
 
 
 # Liste des chose a faire de Elouen 
@@ -20,8 +21,10 @@ Nous avons créé le labyrinth de vos rêves!
 - [ ] Textures
 - [ ] Son
 - [ ] Musique boucle fin de niveau
+- [ ] Document présentation
 
 # Liste des chose a faire de Estavan
 
 - [ ] Amélioré le site (faire un truc stylé carré dans l'axe)
+- [ ] Document présentation
       
