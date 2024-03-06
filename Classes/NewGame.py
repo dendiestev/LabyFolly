@@ -82,7 +82,7 @@ class NewGame():
 
     def update(self):
         pygame.draw.rect(self.screen, (255,255,255), self.list_map[self.map_index])
-
+        self.screen.fill((43, 43, 43))
         self.bstart.update()
         self.draw_perso()
         self.baright.update()
