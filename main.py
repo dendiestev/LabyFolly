@@ -10,9 +10,7 @@ BLACK = (0, 0, 0)
 
 def main():
     pygame.init()
-    # mixer.init()
-    # m_valo = "textures/valo/valoMusic.mp3"
-    # mixer.music.load(m_valo)
+    mixer.init()
     lvl = 0
     cell_size = 60
     num_rows = 5
@@ -46,6 +44,8 @@ def main():
                             menuManager.etat = "new game"
                         if menuManager.bmulti.over():
                             menuManager.etat = "multi"
+                        if menuManager.site.get_rect(topleft=(540,760)).collidepoint(event.pos):
+                            menuManager.ouvrir_site_web("http://elouen.verachten.fr")
                     if menuManager.etat == "leaderboard":
                         if menuManager.l.breload.over():
                             menuManager.l.reload()
