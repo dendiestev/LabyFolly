@@ -21,8 +21,8 @@ Nous avons créé le labyrinth de vos rêves!
 - [ ] Faire personnage mort pour game over (Matin)
 - [ ] Son (Matin)
 - [ ] Textures (Après-midi)
-- [ ] Musique boucle fin de niveau
 - [ ] Document présentation (Après-midi)
+- [ ] Musique boucle fin de niveau
 
 # Liste des chose a faire de Estavan
 
