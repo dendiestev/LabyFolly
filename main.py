@@ -30,7 +30,7 @@ def main():
         menuManager.update()
         if menuManager.etat == "game":
             game_manager.update()
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_manager.save()
@@ -39,38 +39,74 @@ def main():
                 if event.button == 1:
                     if menuManager.etat == "menu":
                         if menuManager.bleaderborad.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.etat = "leaderboard"
                         if menuManager.bnew.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.etat = "new game"
                         if menuManager.bmulti.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.etat = "multi"
                         if menuManager.site.get_rect(topleft=(540,760)).collidepoint(event.pos):
                             menuManager.ouvrir_site_web("http://elouen.verachten.fr")
                     if menuManager.etat == "leaderboard":
                         if menuManager.l.breload.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.l.reload()
                     if menuManager.etat == "new game":
                         if menuManager.newgame.baright.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.newgame.perso_index < len(menuManager.newgame.liste_perso)-1:
                                 menuManager.newgame.perso_index +=1
                             else:
                                 menuManager.newgame.perso_index = 0
                         if menuManager.newgame.baleft.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.newgame.perso_index > 0:
                                 menuManager.newgame.perso_index -= 1
                             else:
                                 menuManager.newgame.perso_index = len(menuManager.newgame.liste_perso)-1
                         if menuManager.newgame.bmapcod.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.newgame.map_index = 0
                         if menuManager.newgame.bmapftn.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.newgame.map_index = 1
                         if menuManager.newgame.bmaphp.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.newgame.map_index = 2
                         if menuManager.newgame.bmapmk.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.newgame.map_index = 3
                         if menuManager.newgame.bmapvalo.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.newgame.map_index = 4
                         if menuManager.newgame.bstart.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             check = menuManager.newgame.check()
                             if check == True:
                                 user_and_party_info = menuManager.newgame.start()
@@ -81,36 +117,66 @@ def main():
                                 game_manager.map_index = menuManager.newgame.map_index
                     if menuManager.etat == "multi":
                         if menuManager.multigame.Aright1.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.multigame.p1 < len(menuManager.multigame.liste_perso)-1:
                                 menuManager.multigame.p1 +=1
                             else:
                                 menuManager.multigame.p1 = 0
                         if menuManager.multigame.AleftJ1.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.multigame.p1 > 0:
                                 menuManager.multigame.p1 -= 1
                             else:
                                 menuManager.multigame.p1 = len(menuManager.multigame.liste_perso)-1
                         if menuManager.multigame.Aright2.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.multigame.p2 < len(menuManager.multigame.liste_perso)-1:
                                 menuManager.multigame.p2 +=1
                             else:
                                 menuManager.multigame.p2 = 0
                         if menuManager.multigame.AleftJ2.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             if menuManager.multigame.p2 > 0:
                                 menuManager.multigame.p2 -= 1
                             else:
                                 menuManager.multigame.p2 = len(menuManager.multigame.liste_perso)-1
                         if menuManager.multigame.bmapcod.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.multigame.map_choice = 0
                         if menuManager.multigame.bmapftn.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.multigame.map_choice = 1
                         if menuManager.multigame.bmaphp.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.multigame.map_choice = 2
                         if menuManager.multigame.bmapmk.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.multigame.map_choice = 3
                         if menuManager.multigame.bmapvalo.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             menuManager.multigame.map_choice = 4
                         if menuManager.multigame.bstart.over():
+                            pygame.mixer.music.load("sound/click_sound.mp3")
+                            pygame.mixer.music.play()
+                            pygame.mixer.music.set_volume(.2)
                             check = menuManager.multigame.check()
                 if menuManager.etat in ["new game","leaderboard","multi"]:             
                     if menuManager.bback.over():
