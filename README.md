@@ -8,6 +8,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Collision avec les enemies
 - [X] Activation des sharde
 - [x] Game over
+- [x] Leaderboard
 - [ ] 1v1
 - [ ] Document présentation
 
