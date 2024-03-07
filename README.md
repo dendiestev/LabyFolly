@@ -5,7 +5,7 @@ Nous avons créé le labyrinth de vos rêves!
 # Liste des chose a faire de Jonas 
 
 - [x] Affichage le conteur des shards
-- [x] Colision avec les enemies
+- [x] Collision avec les enemies
 - [X] Activation des sharde
 - [ ] Game over
 - [ ] 1v1
