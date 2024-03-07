@@ -22,8 +22,8 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Faire personnage mort pour game over (Matin)
 - [ ] Textures (Après-midi)
 - [ ] Document présentation (Après-midi)
-- [ ] Inclinsaison joueur Top-View
 - [ ] Musique boucle fin de niveau
+- [ ] Top View (Idée d'amelioration)
 
 # Liste des chose a faire de Estavan
 
