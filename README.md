@@ -19,7 +19,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Affichage de la texturue du chemin
 - [x] Refaire UI
 - [x] Son (Matin)
-- [ ] Faire personnage mort pour game over (Matin)
+- [x] Faire personnage mort pour game over (Matin)
 - [ ] Textures (Après-midi)
 - [ ] Document présentation (Après-midi)
 - [ ] Inclinsaison joueur Top-View
