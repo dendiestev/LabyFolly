@@ -7,7 +7,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Affichage le conteur des shards
 - [x] Collision avec les enemies
 - [X] Activation des sharde
-- [ ] Game over
+- [x] Game over
 - [ ] 1v1
 - [ ] Document présentation
 
