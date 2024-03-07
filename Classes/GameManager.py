@@ -40,6 +40,25 @@ class GameManager:
         pygame.mixer.music.play(-1)
         pygame.mixer.music.set_volume(0.1)
 
+    def gameOver(self):
+        s = pygame.Surface((1350,1050))
+        s.fill((0,0,0)) 
+        self.screen.blit(s, (0,0)) 
+        font = pygame.freetype.SysFont("Monaco", 128)
+        font.render_to(self.screen, (350, 100), "Game Over", pygame.Color('white'))
+        perso = pygame.image.load(self.perso_liste[self.perso_index]).convert_alpha()
+        perso = pygame.transform.scale(perso, (300, 300))
+        self.screen.blit(perso, (500, 200))
+        font = pygame.freetype.SysFont("Monaco", 45)
+        font.render_to(self.screen, (625, 281), "x  x", pygame.Color('black'))
+
+    def reset(self):
+        self.lvl = 0
+        self.cell_size = 60
+        self.num_rows = 5
+        self.num_cols = 5
+        self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
+
     def next_lvl(self):
         print(self.liste_map[self.map_index])
         self.screen.fill(BLACK)
@@ -88,55 +107,60 @@ class GameManager:
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
     
     def update(self):
-        self.showTimer()
-        self.showShard()
-        self.showLife()
-        if self.player.nextLevel == True:
-            self.next_lvl()
-        if not self.start:
-            self.next_lvl()
-            self.start = True
-        if self.player.power:
-            self.map.slime = self.slime2
-        else:
-            self.map.slime = self.slime
-        if self.player.life <= 0:
-            print("Ta perdu nulosssssss !!!!!!")
-            self.save()
-            self.menu_manager.etat = "menu"
-            self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
+        if self.Over == False:
+            self.showTimer()
+            self.showShard()
+            self.showLife()
+            if self.player.nextLevel == True:
+                self.next_lvl()
+            if not self.start:
+                self.next_lvl()
+                self.start = True
+            if self.player.power:
+                self.map.slime = self.slime2
+            else:
+                self.map.slime = self.slime
+            if self.player.life <= 0:
+                self.Over = True
+                self.save()
+                self.gameOver()
             
     def top(self):
+        if self.Over == False:
         self.enemie.move_enemie(self.map.main_liste)
         self.player.top(self.map.main_liste)
         self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def down(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.down(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.down(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def right(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.right(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.right(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
         
     def left(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.left(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.left(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
 
     def save(self):
-        ticks = pygame.time.get_ticks()
-        millis = ticks%1000
-        seconds = int(ticks/1000 % 60)
-        minutes = int(ticks/60000 % 24)
-        print(self.user_and_party_info)
-        self.BDD.update_party(level=self.lvl, timer=f"{minutes}:{seconds}:{millis}", pseudo=self.user_and_party_info[0]["pseudo"])
+        if self.user_and_party_info != None:
+            ticks = pygame.time.get_ticks()
+            millis = ticks%1000
+            seconds = int(ticks/1000 % 60)
+            minutes = int(ticks/60000 % 24)
+            print(self.user_and_party_info)
+            self.BDD.update_party(level=self.lvl, timer=f"{minutes}:{seconds}:{millis}", pseudo=self.user_and_party_info[0]["pseudo"])
 
     def showTimer(self):
         outEnd = pygame.rect.Rect(1150, 150, 175, 300)
