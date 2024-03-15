@@ -21,10 +21,10 @@ class Leaderboard():
         value = self.leaderboar[v]
 
         perso = pygame.image.load(self.perso_liste[value['character']]).convert_alpha()
-        perso = pygame.transform.scale(perso, (15, 15))
+        perso = pygame.transform.scale(perso, (30, 30))
 
         map = pygame.image.load(self.map_list[value['map']]).convert_alpha()
-        map = pygame.transform.scale(map, (15, 15))
+        map = pygame.transform.scale(map, (30, 30))
 
         pygame.draw.rect(self.screen, (100,100,100), (200, (45*v)+50, 980, 45))
 

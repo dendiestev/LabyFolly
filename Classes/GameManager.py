@@ -30,11 +30,13 @@ class GameManager:
         self.liste_sound_effect = ["sound/sound_grass/sound-step.wav"]
         self.path_liste = ["assets/textures/cod/route_cod.png", "assets/textures/fortnite/herbe_fortnite.png", "assets/textures/hp/brume_hp.png", "assets/textures/mk/terre_mk.png", "assets/textures/valo/neige_valo.png"]
         self.perso_liste = ["assets/characters/jonesy.png","assets/characters/jonesy_du_bunker.png","assets/characters/jonesy_sombre.png","assets/characters/jonesy_le_noir.png","assets/characters/jonesy_le_lgbtqia2+.png"]
+        self.dead_perso_liste = ["assets/characters/dead_jonesy.png","assets/characters/dead_jonesy_du_bunker.png","assets/characters/dead_jonesy_sombre.png","assets/characters/dead_jonesy_le_noir.png","assets/characters/dead_jonesy_le_lgbtqia2+.png"]
         self.liste_map = ["assets/textures/cod/mur_cod.png", "assets/textures/fortnite/mur_fortnite.png", "assets/textures/hp/arbre_hp.png", "assets/textures/mk/lave_mk.png", "assets/textures/valo/mur_valo.png"]
         self.liste_music = ["assets/textures/cod/cod.mp3", "assets/textures/fortnite/fortnite.mp3", "assets/textures/hp/hp.mp3", "assets/textures/mk/mk.mp3", "assets/textures/valo/valo.mp3"]
         self.life = pygame.image.load("assets/life/life.png")
         self.slime = pygame.image.load("assets/mob/slime.png")
         self.slime2 = pygame.image.load("assets/mob/slime2.png")
+        self.Over = False
 
     def play_music(self):
         musique2 = pygame.mixer.Sound(self.liste_music[self.map_index])
@@ -43,6 +45,27 @@ class GameManager:
         # pygame.mixer.music.load(self.liste_music[self.map_index])
         # pygame.mixer.music.play(-1)
         # pygame.mixer.music.set_volume(0.1)
+
+    def gameOver(self):
+        self.menu_manager.etat = "game over"
+        self.menu_manager.bback.update()
+        s = pygame.Surface((1350,1050))
+        s.set_alpha(128)
+        s.fill((0,0,0)) 
+        self.screen.blit(s, (0,0)) 
+        font = pygame.freetype.SysFont("Monaco", 128)
+        font.render_to(self.screen, (350, 100), "Game Over", pygame.Color('white'))
+        perso = pygame.image.load(self.dead_perso_liste[self.perso_index]).convert_alpha()
+        perso = pygame.transform.scale(perso, (300, 300))
+        self.screen.blit(perso, (500, 200))
+    
+    def reset(self):
+        self.lvl = 0
+        self.cell_size = 60
+        self.num_rows = 5
+        self.num_cols = 5
+        self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
+
 
     def next_lvl(self):
         print(self.liste_map[self.map_index])
@@ -92,51 +115,55 @@ class GameManager:
         self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
     
     def update(self):
-        self.showTimer()
-        self.showShard()
-        self.showLife()
-        if self.player.nextLevel == True:
-            self.next_lvl()
-        if not self.start:
-            self.next_lvl()
-            self.start = True
-        if self.player.power:
-            self.map.slime = self.slime2
-        else:
-            self.map.slime = self.slime
-        if self.player.life <= 0:
-            print("Ta perdu nulosssssss !!!!!!")
-            self.save()
-            self.menu_manager.etat = "menu"
-            self.player = Player(self.screen, self.cell_size, self.num_cols, self.num_rows)
+        if self.Over == False:
+                self.showTimer()
+                self.showShard()
+                self.showLife()
+                if self.player.nextLevel == True:
+                    self.next_lvl()
+                if not self.start:
+                    self.next_lvl()
+                    self.start = True
+                if self.player.power:
+                    self.map.slime = self.slime2
+                else:
+                    self.map.slime = self.slime
+                if self.player.life <= 0:
+                        self.Over = True
+                        self.save()
+                        self.gameOver()
             
     def top(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.top(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
-        self.play_sound_effect("sound/sound_grass/sound-step.wav")
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.top(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+            self.play_sound_effect("sound/sound_grass/sound-step.wav")
         
     def down(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.down(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
-        self.play_sound_effect("sound/sound_grass/sound-step.wav")
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.down(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+            self.play_sound_effect("sound/sound_grass/sound-step.wav")
 
     def right(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.right(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
-        self.play_sound_effect("sound/sound_grass/sound-step.wav")
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.right(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+            self.play_sound_effect("sound/sound_grass/sound-step.wav")
         
     def left(self):
-        self.enemie.move_enemie(self.map.main_liste)
-        self.player.left(self.map.main_liste)
-        self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
-        self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
-        self.play_sound_effect("sound/sound_grass/sound-step.wav")
+        if self.Over == False:
+            self.enemie.move_enemie(self.map.main_liste)
+            self.player.left(self.map.main_liste)
+            self.player.check_colison(self.enemie.enemie, self.enemie.shard, self.map)
+            self.map.afficher_update(self.enemie.enemie, self.enemie.shard)
+            self.play_sound_effect("sound/sound_grass/sound-step.wav")
 
     def save(self):
         ticks = pygame.time.get_ticks()

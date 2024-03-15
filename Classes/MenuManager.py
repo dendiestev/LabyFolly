@@ -32,7 +32,7 @@ class MenuManager:
             self.bmulti.update()
             self.bnew.update()
         if self.etat == "leaderboard":
-            self.screen.fill("blue")
+            self.screen.fill((238,238,238))
             self.l.draw_leaderboard()
             self.bback.update()
         if self.etat == "new game":

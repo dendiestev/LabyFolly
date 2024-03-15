@@ -178,7 +178,7 @@ def main():
                             pygame.mixer.music.play()
                             pygame.mixer.music.set_volume(.2)
                             check = menuManager.multigame.check()
-                if menuManager.etat in ["new game","leaderboard","multi"]:             
+                if menuManager.etat in ["new game","leaderboard","multi", "game over"]:             
                     if menuManager.bback.over():
                         menuManager.etat = "menu"
             if menuManager.etat == "new game":
