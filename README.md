@@ -10,7 +10,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [x] Game over
 - [x] Leaderboard
 - [ ] 1v1
-- [ ] Document présentation
+- [x] Document présentation
 
 
 # Liste des chose a faire de Elouen 
@@ -29,5 +29,5 @@ Nous avons créé le labyrinth de vos rêves!
 # Liste des chose a faire de Estévan
 
 - [ ] Amélioré le site (faire un truc stylé carré dans l'axe)
-- [ ] Document présentation
+- [x] Document présentation
       
