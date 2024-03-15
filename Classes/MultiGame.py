@@ -27,6 +27,11 @@ class MultiGame:
 
         self.bstart =Button(screen=self.screen, pos=(825,455), path_img_down="assets/buttons/start/down.png", path_img_up="assets/buttons/start/up.png")
 
+    def soon(self):
+        base_font = pygame.font.SysFont("Monaco", 128)
+        text_surface = base_font.render("Soon", True, (255, 255, 255))
+        self.screen.blit(text_surface, (1000, 500))
+    
     def draw_perso1(self):
         b = pygame.image.load(self.liste_perso[self.p1]).convert_alpha()
         self.screen.blit(b, (170,70))
