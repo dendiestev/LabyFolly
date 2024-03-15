@@ -166,6 +166,7 @@ class GameManager:
             self.play_sound_effect("sound/sound_grass/sound-step.wav")
 
     def save(self):
+
         ticks = pygame.time.get_ticks()
         millis = ticks%1000
         seconds = int(ticks/1000 % 60)
@@ -174,14 +175,15 @@ class GameManager:
         self.BDD.update_party(level=self.lvl, timer=f"{minutes}:{seconds}:{millis}", pseudo=self.user_and_party_info[0]["pseudo"])
 
     def showTimer(self):
-        outEnd = pygame.rect.Rect(1150, 150, 175, 300)
-        pygame.draw.rect(self.screen, (133, 133, 133), outEnd)
-        ticks = pygame.time.get_ticks()
-        millis = ticks%1000
-        seconds = int(ticks/1000 % 60)
-        minutes = int(ticks/60000 % 24)
-        out = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
-        self.font.render_to(self.screen, (1160, 188), out, pygame.Color('white'))
+        if self.user_and_party_info != None:
+            outEnd = pygame.rect.Rect(1150, 150, 175, 300)
+            pygame.draw.rect(self.screen, (133, 133, 133), outEnd)
+            ticks = pygame.time.get_ticks()
+            millis = ticks%1000
+            seconds = int(ticks/1000 % 60)
+            minutes = int(ticks/60000 % 24)
+            out = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
+            self.font.render_to(self.screen, (1160, 188), out, pygame.Color('white'))
 
     def showShard(self):
         b = pygame.transform.scale(self.map.shard, (80,80))

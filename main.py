@@ -54,7 +54,7 @@ def main():
                             pygame.mixer.music.set_volume(.2)
                             menuManager.etat = "multi"
                         if menuManager.site.get_rect(topleft=(540,760)).collidepoint(event.pos):
-                            menuManager.ouvrir_site_web("http://elouen.verachten.fr")
+                            menuManager.ouvrir_site_web("http://127.0.0.1:5000")
                     if menuManager.etat == "leaderboard":
                         if menuManager.l.breload.over():
                             pygame.mixer.music.load("sound/click_sound.mp3")
