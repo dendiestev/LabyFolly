@@ -26,7 +26,7 @@ Nous avons créé le labyrinth de vos rêves!
 - [ ] Musique boucle fin de niveau
 - [ ] Top View (Idée d'amelioration)
 
-# Liste des chose a faire de Estavan
+# Liste des chose a faire de Estévan
 
 - [ ] Amélioré le site (faire un truc stylé carré dans l'axe)
 - [ ] Document présentation
